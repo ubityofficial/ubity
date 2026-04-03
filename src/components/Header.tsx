@@ -1,11 +1,14 @@
 import { Menu, X, X as CloseIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigation } from '../context/NavigationContext';
+import { useLocation } from 'react-router-dom';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openModal, setOpenModal] = useState(null);
-  const { navigateTo, currentPage } = useNavigation();
+  const { navigateTo } = useNavigation();
+  const location = useLocation();
+  const isMainPage = location.pathname === '/';
 
   const scrollToGetInTouch = () => {
     document.getElementById('get-in-touch')?.scrollIntoView({ behavior: 'smooth' });
@@ -75,7 +78,7 @@ export default function Header() {
 
           {/* Right Section - Buttons */}
           <div className="flex items-center gap-2 sm:gap-4">
-            {currentPage === 'main' ? (
+            {isMainPage ? (
               <>
                 <button onClick={() => navigateTo('internships')} className="hidden md:inline-block px-4 sm:px-7 py-2 text-xs sm:text-sm bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                   Apply for Internships

@@ -1,24 +1,28 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Page = 'main' | 'internships';
 
 interface NavigationContextType {
-  currentPage: Page;
   navigateTo: (page: Page) => void;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
 export function NavigationProvider({ children }: { children: React.ReactNode }) {
-  const [currentPage, setCurrentPage] = useState<Page>('main');
+  const navigate = useNavigate();
 
   const navigateTo = (page: Page) => {
-    setCurrentPage(page);
+    const routes: Record<Page, string> = {
+      main: '/',
+      internships: '/internships',
+    };
+    navigate(routes[page]);
     window.scrollTo(0, 0);
   };
 
   return (
-    <NavigationContext.Provider value={{ currentPage, navigateTo }}>
+    <NavigationContext.Provider value={{ navigateTo }}>
       {children}
     </NavigationContext.Provider>
   );

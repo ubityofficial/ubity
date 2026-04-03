@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { NavigationProvider, useNavigation } from './context/NavigationContext';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { NavigationProvider } from './context/NavigationContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import PathwaySection from './components/PathwaySection';
@@ -32,24 +33,17 @@ function MainPage() {
   );
 }
 
-function AppContent() {
-  const { currentPage } = useNavigation();
-
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
-
-  return currentPage === 'main' ? <MainPage /> : <InternshipsPage />;
-}
-
 function App() {
   return (
-    <NavigationProvider>
-      <AppContent />
-    </NavigationProvider>
+    <Router>
+      <NavigationProvider>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/internships" element={<InternshipsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </NavigationProvider>
+    </Router>
   );
 }
 
