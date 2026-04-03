@@ -1,18 +1,10 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs@18.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/send-enquiry",
       "destination": "/api/send-enquiry.js"
     }
-  ],
-  "env": {
-    "VITE_API_URL": "/api"
-  }
+  ]
 }
