@@ -44,7 +44,14 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
     setMessage(null);
 
     try {
-      const response = await fetch('http://localhost:3001/api/send-enquiry', {
+      let apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      
+      // If API URL is not set or localhost, and we're on a different host (mobile), use relative path
+      if (apiUrl === 'http://localhost:3001' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        apiUrl = window.location.origin;
+      }
+      
+      const response = await fetch(`${apiUrl}/api/send-enquiry`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
