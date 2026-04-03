@@ -46,12 +46,21 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
     try {
       let apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
       
-      // If API URL is not set or localhost, and we're on a different host (mobile), use relative path
-      if (apiUrl === 'http://localhost:3001' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        apiUrl = window.location.origin;
+      // Build the endpoint URL
+      let endpoint = '';
+      if (apiUrl.startsWith('http')) {
+        // Full URL like http://localhost:3001
+        endpoint = `${apiUrl}/api/send-enquiry`;
+      } else {
+        // Relative path like /api or empty
+        if (apiUrl === '' || apiUrl === '/') {
+          endpoint = '/api/send-enquiry';
+        } else {
+          endpoint = `${apiUrl}/send-enquiry`;
+        }
       }
       
-      const response = await fetch(`${apiUrl}/api/send-enquiry`, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
