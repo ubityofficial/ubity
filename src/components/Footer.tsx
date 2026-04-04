@@ -105,7 +105,11 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
     },
     terms: {
       title: 'Terms and Conditions',
-      content: 'Terms and Conditions of Use for UBITY\n\n1. Acceptance of Terms\nBy accessing our website, you accept all terms and conditions that apply.\n\n2. Use of Services\nYou agree to use our services only for lawful purposes and not in violation of applicable laws.\n\n3. User Responsibility\nYou are responsible for all activities that occur through your account.\n\n4. Limitation of Liability\nUBITY is not responsible for damages arising from your use or inability to use our services.'
+      content: 'Terms and Conditions of Use\n\nLegal Organization: Meenakumari K R\n\n1. Acceptance of Terms\nBy accessing our website and services, you accept all terms and conditions that apply. These terms govern your use of our services.\n\n2. Use of Services\nYou agree to use our services only for lawful purposes and not in violation of applicable laws or regulations. You shall not use our services for any unlawful or fraudulent activities.\n\n3. Internship Programs\nOur internship programs are educational in nature. You agree to comply with all program requirements and schedules. We maintain the right to modify or cancel programs at any time with notice.\n\n4. User Responsibility\nYou are responsible for all activities that occur through your account. You agree to maintain confidentiality of any credentials and promptly notify us of unauthorized access.\n\n5. Intellectual Property\nAll content, materials, and services on our website are intellectual property. Unauthorized use or reproduction is prohibited.\n\n6. Limitation of Liability\nWe are not responsible for damages arising from your use or inability to use our services, including indirect, incidental, or consequential damages.\n\n7. Modifications\nWe reserve the right to modify these terms at any time. Continued use of our services constitutes acceptance of updated terms.\n\n8. Governing Law\nThese terms are governed by applicable laws of India.'
+    },
+    cancellation: {
+      title: 'Refund & Cancellation Policy',
+      content: 'Refund and Cancellation Policy\n\nLegal Organization: Meenakumari K R\n\n1. Internship Program Cancellation\nStudents may request cancellation within 7 days of enrollment. A refund of 90% of the paid amount will be processed within 10 business days.\n\n2. Refund After 7 Days\nAfter 7 days from enrollment, refunds are not applicable. The enrollment is non-refundable as the program access and training materials have been provided.\n\n3. Payment Refunds\nAll refunds are processed to the original payment method. Please allow 10-15 business days for the funds to reflect in your account.\n\n4. Stipend Terms\nStipends are awarded based on performance and completion of program requirements. Stipends are non-refundable.\n\n5. Service Cancellation by Company\nWe reserve the right to cancel or suspend services if:\n- Terms of service are violated\n- Fraudulent activity is detected\n- Program requirements are not met\n\nIn such cases, a pro-rata refund may be issued at our discretion.\n\n6. Technical Issues\nIf you experience technical issues preventing program access, we will attempt resolution within 24-48 hours. If unresolved, a full refund may be issued.\n\n7. Contact Us\nFor refund requests or cancellation inquiries, contact us at: ubityofficial@gmail.com\n\n8. Processing Timeline\nRefund requests are processed within 7-10 business days from the date of approval.'
     }
   };
 
@@ -298,19 +302,22 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
         <div className={`pt-4 sm:pt-8 border-t ${borderClass} flex flex-col md:flex-row md:justify-between md:items-center gap-4 sm:gap-6 transition-colors duration-300`}>
           <div className={`flex flex-col md:flex-row md:items-center gap-2 sm:gap-3 md:gap-4 w-full md:w-auto`}>
             <p className={`text-xs font-semibold tracking-tight text-center md:text-left ${theme === 'light' ? 'text-gray-700' : 'text-gray-200'}`}>
-              © 2026 Ubity. All rights reserved.
+              © 2026 Meenakumari K R. All rights reserved.
             </p>
             <div className={`hidden md:block w-px h-5 ${theme === 'light' ? 'bg-gray-300' : 'bg-gray-700'}`} />
             <p className={`text-xs sm:text-sm font-black tracking-tight text-center md:text-left ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
               Developed by Ubity
             </p>
           </div>
-          <div className="flex gap-3 sm:gap-6 md:gap-8 justify-center md:justify-end w-full md:w-auto">
-            <button onClick={() => setOpenModal('privacy')} className={`${textClass} ${linkHover} text-xs font-black tracking-tight uppercase transition-all duration-300 hover:translate-x-0.5 cursor-pointer`}>
-              Privacy Policy
-            </button>
+          <div className="flex gap-2 sm:gap-3 md:gap-4 justify-center md:justify-end w-full md:w-auto flex-wrap">
             <button onClick={() => setOpenModal('terms')} className={`${textClass} ${linkHover} text-xs font-black tracking-tight uppercase transition-all duration-300 hover:translate-x-0.5 cursor-pointer`}>
               Terms
+            </button>
+            <button onClick={() => setOpenModal('cancellation')} className={`${textClass} ${linkHover} text-xs font-black tracking-tight uppercase transition-all duration-300 hover:translate-x-0.5 cursor-pointer`}>
+              Refund Policy
+            </button>
+            <button onClick={() => setOpenModal('privacy')} className={`${textClass} ${linkHover} text-xs font-black tracking-tight uppercase transition-all duration-300 hover:translate-x-0.5 cursor-pointer`}>
+              Privacy
             </button>
           </div>
         </div>
