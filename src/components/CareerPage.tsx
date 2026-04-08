@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, MapPin, Clock, Briefcase, Users, Award, CheckCircle2, Sparkles, Rocket, Target } from 'lucide-react';
+import { ArrowRight, MapPin, Clock, Briefcase, Users, Award, CheckCircle2, Sparkles, Rocket, Target, X, Upload } from 'lucide-react';
 
 interface JobListing {
   id: string;
@@ -11,6 +11,16 @@ interface JobListing {
   perks: string[];
   location: string;
   type: string;
+}
+
+interface ApplicationForm {
+  fullName: string;
+  email: string;
+  age: string;
+  qualification: string;
+  resume: File | null;
+  availableImmediately: boolean;
+  remoteWork: boolean;
 }
 
 const jobs: JobListing[] = [
@@ -231,8 +241,87 @@ const jobs: JobListing[] = [
 export default function CareerPage() {
   const [selectedCategory, setSelectedCategory] = useState<'intern' | 'parttime' | 'fulltime'>('intern');
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const [selectedJobForApplication, setSelectedJobForApplication] = useState<JobListing | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [formData, setFormData] = useState<ApplicationForm>({
+    fullName: '',
+    email: '',
+    age: '',
+    qualification: '',
+    resume: null,
+    availableImmediately: false,
+    remoteWork: true,
+  });
 
   const categorizedJobs = jobs.filter(job => job.category === selectedCategory);
+
+  const handleApplyClick = (job: JobListing) => {
+    setSelectedJobForApplication(job);
+    setShowApplicationForm(true);
+  };
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    if (type === 'checkbox') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: (e.target as HTMLInputElement).checked
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFormData(prev => ({
+        ...prev,
+        resume: e.target.files![0]
+      }));
+    }
+  };
+
+  const handleSubmitApplication = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.fullName || !formData.email || !formData.age || !formData.qualification || !formData.resume) {
+      alert('Please fill all required fields and upload a resume');
+      return;
+    }
+
+    setSubmitting(true);
+    
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setSuccessMessage(`✓ Application submitted successfully! We'll review your profile and get back to you soon.`);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({
+          fullName: '',
+          email: '',
+          age: '',
+          qualification: '',
+          resume: null,
+          availableImmediately: false,
+          remoteWork: true,
+        });
+        setShowApplicationForm(false);
+        setSuccessMessage('');
+      }, 3000);
+    } catch (error) {
+      alert('Error submitting application. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const categoryTabs = [
     { id: 'intern', label: 'Internship Programs', icon: Award, count: 2, bgGradient: 'from-blue-50 via-cyan-50 to-blue-50', borderColor: 'border-blue-200', activeGradient: 'from-blue-600 via-blue-500 to-cyan-600', shadowColor: 'shadow-blue-200' },
@@ -249,6 +338,153 @@ export default function CareerPage() {
         <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-tr from-pink-100 to-transparent rounded-full mix-blend-multiply filter blur-3xl opacity-20" style={{ animation: 'blob 7s infinite 4s' }}></div>
       </div>
 
+      {/* Application Form Modal */}
+      {showApplicationForm && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full my-8">
+            {/* Form Header */}
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-8 flex items-center justify-between rounded-t-2xl">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-2">Apply Now</h2>
+                <p className="text-blue-50">{selectedJobForApplication?.title}</p>
+              </div>
+              <button
+                onClick={() => setShowApplicationForm(false)}
+                className="text-white hover:bg-white/20 p-2 rounded-lg transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Form Content */}
+            <form onSubmit={handleSubmitApplication} className="p-8 space-y-6">
+              {successMessage && (
+                <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 font-semibold">
+                  {successMessage}
+                </div>
+              )}
+
+              {/* Name Field */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleFormChange}
+                  placeholder="John Doe"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  required
+                />
+              </div>
+
+              {/* Email Field */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  placeholder="john@example.com"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  required
+                />
+              </div>
+
+              {/* Age Field */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Age *</label>
+                <input
+                  type="number"
+                  name="age"
+                  value={formData.age}
+                  onChange={handleFormChange}
+                  placeholder="25"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  required
+                  min="18"
+                  max="80"
+                />
+              </div>
+
+              {/* Qualification Field */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Qualification *</label>
+                <select
+                  name="qualification"
+                  value={formData.qualification}
+                  onChange={handleFormChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  required
+                >
+                  <option value="">Select your qualification</option>
+                  <option value="highschool">High School / 12th Pass</option>
+                  <option value="diploma">Diploma</option>
+                  <option value="bachelor">Bachelor's Degree</option>
+                  <option value="master">Master's Degree</option>
+                  <option value="phd">PhD</option>
+                </select>
+              </div>
+
+              {/* Resume Upload */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Resume *</label>
+                <label className="w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-center gap-3">
+                  <Upload className="w-5 h-5 text-gray-600" />
+                  <span className="text-gray-700">
+                    {formData.resume ? formData.resume.name : 'Click to upload or drag and drop'}
+                  </span>
+                  <input
+                    type="file"
+                    name="resume"
+                    onChange={handleFileChange}
+                    accept=".pdf,.doc,.docx"
+                    className="hidden"
+                    required
+                  />
+                </label>
+                <p className="text-xs text-gray-500 mt-2">Supported formats: PDF, DOC, DOCX (Max 5MB)</p>
+              </div>
+
+              {/* Toggle Options */}
+              <div className="space-y-4 bg-gray-50 p-4 rounded-xl">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="availableImmediately"
+                    checked={formData.availableImmediately}
+                    onChange={handleFormChange}
+                    className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-gray-700 font-medium">Available to start immediately</span>
+                </label>
+                
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="remoteWork"
+                    checked={formData.remoteWork}
+                    onChange={handleFormChange}
+                    className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-gray-700 font-medium">Prefer remote work</span>
+                </label>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full px-8 py-4 bg-black hover:bg-gray-900 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {submitting ? 'Submitting...' : 'Submit Application'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Navigation Bar */}
       <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-xl bg-white/80 border-b border-gray-200/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -260,7 +496,7 @@ export default function CareerPage() {
           </div>
           <a
             href="/internships"
-            className="px-6 py-2.5 bg-gradient-to-r from-gray-100 to-gray-50 hover:from-gray-200 hover:to-gray-100 text-gray-700 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg border border-gray-200"
+            className="px-6 py-2.5 bg-black text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:bg-gray-900"
           >
             ← Back
           </a>
@@ -401,8 +637,8 @@ export default function CareerPage() {
                   </div>
                   <button className={`p-3 rounded-xl transition-all duration-300 flex-shrink-0 font-semibold ${
                     expandedJob === job.id
-                      ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-lg'
-                      : 'bg-gradient-to-br from-gray-100 to-gray-50 text-gray-600 hover:from-gray-200 hover:to-gray-100 hover:shadow-md'
+                      ? 'bg-black text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:shadow-md'
                   }`}>
                     <ArrowRight className={`w-6 h-6 transition-transform duration-300 ${expandedJob === job.id ? 'rotate-90' : ''}`} />
                   </button>
@@ -459,12 +695,17 @@ export default function CareerPage() {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                      <button className="flex-1 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200 hover:scale-105 flex items-center justify-center gap-2 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleApplyClick(job);
+                        }}
+                        className="flex-1 px-8 py-4 bg-black hover:bg-gray-900 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-2 relative overflow-hidden group"
+                      >
                         <Briefcase className="w-5 h-5 relative" />
                         <span className="relative">Apply Now</span>
                       </button>
-                      <button className="flex-1 px-8 py-4 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-100">
+                      <button className="flex-1 px-8 py-4 border-2 border-black text-black hover:bg-gray-50 font-bold rounded-xl transition-all duration-300 hover:shadow-lg">
                         Learn More
                       </button>
                     </div>
@@ -485,7 +726,7 @@ export default function CareerPage() {
           <p className="text-xl text-blue-50 mb-12 leading-relaxed">
             Don't see a perfect fit? We'd still love to hear from you. Send us your profile and let's explore opportunities together.
           </p>
-          <button className="px-10 py-4 bg-white text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text font-bold rounded-xl hover:shadow-2xl transition-all hover:scale-110 text-lg border border-white/30 hover:border-white/50 backdrop-blur-lg whitespace-nowrap">
+          <button className="px-10 py-4 bg-black text-white font-bold rounded-xl hover:shadow-2xl transition-all hover:scale-110 text-lg border border-white/30 hover:border-white/50 hover:bg-gray-900 whitespace-nowrap">
             Submit Your Profile
           </button>
         </div>
@@ -497,10 +738,10 @@ export default function CareerPage() {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <p className="text-lg text-gray-600 mb-10 font-medium">Have questions? Our hiring team is here to help.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:careers@ubity.com" className="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-2xl hover:shadow-blue-200 font-semibold transition-all hover:scale-105">
+            <a href="mailto:careers@ubity.com" className="px-8 py-3.5 bg-black text-white rounded-xl hover:shadow-2xl hover:shadow-blue-200 font-semibold transition-all hover:scale-105 hover:bg-gray-900">
               Email Us
             </a>
-            <a href="/internships" className="px-8 py-3.5 bg-white border-2 border-gray-900 text-gray-900 rounded-xl hover:bg-gray-50 hover:shadow-lg font-semibold transition-all hover:scale-105">
+            <a href="/internships" className="px-8 py-3.5 bg-white border-2 border-black text-black rounded-xl hover:bg-gray-50 hover:shadow-lg font-semibold transition-all hover:scale-105">
               Back to Internships
             </a>
           </div>
