@@ -9,54 +9,73 @@ interface Message {
   timestamp: Date;
 }
 
-// Modern Sleek AI Bot Icon Component
-const TechRobotIcon = ({ className }: { className?: string }) => (
+// Professional Support Headphones Icon
+const SupportHeadphoneIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 100 100"
     className={className}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {/* Main head - geometric angular shape */}
+    {/* Left ear cup */}
+    <circle cx="30" cy="50" r="10" stroke="currentColor" strokeWidth="2" />
+    {/* Left ear cup inner circle */}
+    <circle cx="30" cy="50" r="6" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+    
+    {/* Right ear cup */}
+    <circle cx="70" cy="50" r="10" stroke="currentColor" strokeWidth="2" />
+    {/* Right ear cup inner circle */}
+    <circle cx="70" cy="50" r="6" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+    
+    {/* Left headband connector */}
     <path
-      d="M 25 35 L 75 35 L 80 50 L 75 65 L 25 65 L 20 50 Z"
+      d="M 30 40 Q 30 25 50 20"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      fill="none"
+      strokeLinecap="round"
+    />
+    
+    {/* Right headband connector */}
+    <path
+      d="M 70 40 Q 70 25 50 20"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      fill="none"
+      strokeLinecap="round"
+    />
+    
+    {/* Center headband */}
+    <path
+      d="M 50 20 Q 45 18 40 18 Q 35 18 35 22"
       stroke="currentColor"
       strokeWidth="2"
-      strokeLinejoin="round"
-    />
-    
-    {/* Left eye - minimal square */}
-    <rect x="30" y="42" width="11" height="11" stroke="currentColor" strokeWidth="1.5" />
-    <circle cx="35.5" cy="47.5" r="2" fill="currentColor" />
-    
-    {/* Right eye - minimal square */}
-    <rect x="59" y="42" width="11" height="11" stroke="currentColor" strokeWidth="1.5" />
-    <circle cx="64.5" cy="47.5" r="2" fill="currentColor" />
-    
-    {/* Center accent line */}
-    <line x1="50" y1="40" x2="50" y2="62" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-    
-    {/* Horizontal divider line */}
-    <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-    
-    {/* Tech accent dots - left side */}
-    <circle cx="22" cy="45" r="1.5" fill="currentColor" opacity="0.7" />
-    <circle cx="22" cy="50" r="1.5" fill="currentColor" opacity="0.7" />
-    <circle cx="22" cy="55" r="1.5" fill="currentColor" opacity="0.7" />
-    
-    {/* Tech accent dots - right side */}
-    <circle cx="78" cy="45" r="1.5" fill="currentColor" opacity="0.7" />
-    <circle cx="78" cy="50" r="1.5" fill="currentColor" opacity="0.7" />
-    <circle cx="78" cy="55" r="1.5" fill="currentColor" opacity="0.7" />
-    
-    {/* Bottom tech indicator pattern */}
-    <path
-      d="M 35 68 L 35 75 M 42 68 L 42 76 M 50 68 L 50 73 M 58 68 L 58 76 M 65 68 L 65 75"
-      stroke="currentColor"
-      strokeWidth="1.5"
+      fill="none"
       strokeLinecap="round"
-      opacity="0.8"
     />
+    <path
+      d="M 50 20 Q 55 18 60 18 Q 65 18 65 22"
+      stroke="currentColor"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+    />
+    
+    {/* Microphone boom - left side */}
+    <path
+      d="M 25 55 Q 20 60 20 68"
+      stroke="currentColor"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+    />
+    {/* Microphone tip */}
+    <circle cx="20" cy="72" r="3" stroke="currentColor" strokeWidth="1.5" />
+    
+    {/* Support indicator dots */}
+    <circle cx="50" cy="60" r="1.5" fill="currentColor" opacity="0.8" />
+    <circle cx="45" cy="62" r="1.5" fill="currentColor" opacity="0.8" />
+    <circle cx="55" cy="62" r="1.5" fill="currentColor" opacity="0.8" />
   </svg>
 );
 
@@ -142,7 +161,7 @@ export default function ChatBot() {
             isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
           } bg-black hover:bg-gray-900 border border-gray-800 hover:border-gray-600`}
         >
-          <TechRobotIcon className="w-8 h-8 text-white" />
+          <SupportHeadphoneIcon className="w-8 h-8 text-white" />
         </button>
         <span className={`text-xs font-semibold transition-all duration-300 ${
           isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
