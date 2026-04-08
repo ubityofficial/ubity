@@ -13,8 +13,8 @@ export default function PathwaySection() {
   return (
     <section className={`py-0 -mt-8 sm:-mt-16 px-3 sm:px-6 ${bgClass} relative transition-colors duration-300 overflow-hidden`}>
       <div className="max-w-7xl mx-auto">
-        {/* Main SVG Canvas for Routes */}
-        <div className="relative h-64 sm:h-80 md:h-96 mb-8 sm:mb-12">
+        {/* Main SVG Canvas for Routes - Hidden on Mobile */}
+        <div className="relative h-64 sm:h-80 md:h-96 mb-8 sm:mb-12 hidden sm:block">
           <svg className="absolute inset-0 w-full h-full" style={{ opacity: 1 }} viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
             <defs>
               <pattern id="leftDots" patternUnits="userSpaceOnUse" width="20" height="20">
