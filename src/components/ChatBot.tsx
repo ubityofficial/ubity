@@ -57,19 +57,6 @@ const TechRobotIcon = ({ className }: { className?: string }) => (
       strokeLinecap="round"
       opacity="0.8"
     />
-    
-    {/* Support Text */}
-    <text
-      x="50"
-      y="58"
-      textAnchor="middle"
-      fontSize="7"
-      fontWeight="600"
-      fill="currentColor"
-      fontFamily="system-ui, -apple-system, sans-serif"
-    >
-      Support
-    </text>
   </svg>
 );
 
@@ -148,14 +135,21 @@ export default function ChatBot() {
   return (
     <>
       {/* Floating Action Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-2">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`w-16 h-16 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
+            isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
+          } bg-black hover:bg-gray-900 border border-gray-800 hover:border-gray-600`}
+        >
+          <TechRobotIcon className="w-8 h-8 text-white" />
+        </button>
+        <span className={`text-xs font-semibold transition-all duration-300 ${
           isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
-        } bg-black hover:bg-gray-900 border border-gray-800 hover:border-gray-600`}
-      >
-        <TechRobotIcon className="w-8 h-8 text-white" />
-      </button>
+        } ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
+          Support
+        </span>
+      </div>
 
       {/* Chat Window */}
       <div
