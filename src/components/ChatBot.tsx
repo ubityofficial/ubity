@@ -9,56 +9,57 @@ interface Message {
   timestamp: Date;
 }
 
-// Custom Techy Vintage Icon Component
-const TechyBotIcon = ({ className }: { className?: string }) => (
+// Custom Tech Robot Icon Component
+const TechRobotIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 100 100"
     className={className}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {/* Outer circle frame */}
-    <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="2" />
+    {/* Robot Head */}
+    <rect x="20" y="25" width="60" height="55" rx="6" stroke="currentColor" strokeWidth="2.5" />
     
-    {/* Inner decorative circle */}
-    <circle cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+    {/* Head top accent line */}
+    <line x1="20" y1="32" x2="80" y2="32" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
     
-    {/* Top antenna 1 */}
-    <line x1="35" y1="8" x2="35" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="35" cy="6" r="2" fill="currentColor" />
+    {/* Left Eye - Electronic style */}
+    <rect x="28" y="38" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
+    <circle cx="35" cy="45" r="3" fill="currentColor" />
     
-    {/* Top antenna 2 */}
-    <line x1="65" y1="8" x2="65" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="65" cy="6" r="2" fill="currentColor" />
+    {/* Right Eye - Electronic style */}
+    <rect x="58" y="38" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
+    <circle cx="65" cy="45" r="3" fill="currentColor" />
     
-    {/* Screen frame */}
-    <rect x="25" y="28" width="50" height="38" rx="3" stroke="currentColor" strokeWidth="2" />
+    {/* Tech antenna/sensor lines on eyes */}
+    <line x1="28" y1="35" x2="25" y2="30" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <line x1="72" y1="35" x2="75" y2="30" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     
-    {/* Screen details - horizontal lines */}
-    <line x1="28" y1="35" x2="72" y2="35" stroke="currentColor" strokeWidth="1" opacity="0.6" />
-    <line x1="28" y1="41" x2="72" y2="41" stroke="currentColor" strokeWidth="1" opacity="0.6" />
-    <line x1="28" y1="47" x2="72" y2="47" stroke="currentColor" strokeWidth="1" opacity="0.6" />
-    <line x1="28" y1="53" x2="72" y2="53" stroke="currentColor" strokeWidth="1" opacity="0.6" />
-    
-    {/* Chat bubble indicator */}
+    {/* Mouth - Chat indicator */}
     <path
-      d="M 38 38 L 48 50 L 38 62 Q 35 56 35 50 Q 35 44 38 38"
+      d="M 32 56 Q 50 66 68 56"
       stroke="currentColor"
-      strokeWidth="1.5"
-      fill="none"
+      strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="none"
     />
     
-    {/* Dots - indicating message */}
-    <circle cx="55" cy="48" r="2" fill="currentColor" opacity="0.8" />
-    <circle cx="62" cy="48" r="2" fill="currentColor" opacity="0.8" />
-    <circle cx="69" cy="48" r="2" fill="currentColor" opacity="0.8" />
+    {/* Tech dots on sides */}
+    <circle cx="18" cy="45" r="2" fill="currentColor" opacity="0.7" />
+    <circle cx="82" cy="45" r="2" fill="currentColor" opacity="0.7" />
     
-    {/* Bottom buttons */}
-    <rect x="30" y="72" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
-    <rect x="46" y="72" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
-    <rect x="62" y="72" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    {/* Vertical circuit lines */}
+    <line x1="50" y1="65" x2="50" y2="75" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
+    
+    {/* Bottom tech indicator bars */}
+    <rect x="35" y="72" width="3" height="6" fill="currentColor" opacity="0.8" />
+    <rect x="41" y="72" width="3" height="8" fill="currentColor" opacity="0.8" />
+    <rect x="47" y="72" width="3" height="5" fill="currentColor" opacity="0.8" />
+    <rect x="53" y="72" width="3" height="9" fill="currentColor" opacity="0.8" />
+    <rect x="59" y="72" width="3" height="6" fill="currentColor" opacity="0.8" />
+    
+    {/* Glow Ring */}
+    <circle cx="50" cy="52" r="38" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
   </svg>
 );
 
@@ -143,7 +144,7 @@ export default function ChatBot() {
           isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
         } bg-black hover:bg-gray-900 border border-gray-800 hover:border-gray-600`}
       >
-        <TechyBotIcon className="w-8 h-8 text-white" />
+        <TechRobotIcon className="w-8 h-8 text-white" />
       </button>
 
       {/* Chat Window */}
