@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, MessageCircle, Send } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 interface Message {
@@ -8,6 +8,59 @@ interface Message {
   sender: 'user' | 'bot';
   timestamp: Date;
 }
+
+// Custom Techy Vintage Icon Component
+const TechyBotIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 100 100"
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Outer circle frame */}
+    <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="2" />
+    
+    {/* Inner decorative circle */}
+    <circle cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+    
+    {/* Top antenna 1 */}
+    <line x1="35" y1="8" x2="35" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="35" cy="6" r="2" fill="currentColor" />
+    
+    {/* Top antenna 2 */}
+    <line x1="65" y1="8" x2="65" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="65" cy="6" r="2" fill="currentColor" />
+    
+    {/* Screen frame */}
+    <rect x="25" y="28" width="50" height="38" rx="3" stroke="currentColor" strokeWidth="2" />
+    
+    {/* Screen details - horizontal lines */}
+    <line x1="28" y1="35" x2="72" y2="35" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+    <line x1="28" y1="41" x2="72" y2="41" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+    <line x1="28" y1="47" x2="72" y2="47" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+    <line x1="28" y1="53" x2="72" y2="53" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+    
+    {/* Chat bubble indicator */}
+    <path
+      d="M 38 38 L 48 50 L 38 62 Q 35 56 35 50 Q 35 44 38 38"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    
+    {/* Dots - indicating message */}
+    <circle cx="55" cy="48" r="2" fill="currentColor" opacity="0.8" />
+    <circle cx="62" cy="48" r="2" fill="currentColor" opacity="0.8" />
+    <circle cx="69" cy="48" r="2" fill="currentColor" opacity="0.8" />
+    
+    {/* Bottom buttons */}
+    <rect x="30" y="72" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="46" y="72" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="62" y="72" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+);
 
 export default function ChatBot() {
   const { theme } = useTheme();
@@ -88,9 +141,9 @@ export default function ChatBot() {
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
           isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
-        } bg-black hover:bg-gray-900`}
+        } bg-black hover:bg-gray-900 border border-gray-800 hover:border-gray-600`}
       >
-        <MessageCircle className="w-8 h-8 text-white" />
+        <TechyBotIcon className="w-8 h-8 text-white" />
       </button>
 
       {/* Chat Window */}
