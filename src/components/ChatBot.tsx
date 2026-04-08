@@ -88,11 +88,7 @@ export default function ChatBot() {
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
           isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
-        } ${
-          theme === 'light'
-            ? 'bg-gradient-to-br from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700'
-            : 'bg-gradient-to-br from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700'
-        }`}
+        } bg-black hover:bg-gray-900`}
       >
         <MessageCircle className="w-8 h-8 text-white" />
       </button>
@@ -105,14 +101,14 @@ export default function ChatBot() {
         style={{ height: '600px' }}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-cyan-600 text-white px-6 py-5 rounded-t-2xl flex items-center justify-between">
+        <div className="bg-black text-white px-6 py-5 rounded-t-2xl flex items-center justify-between">
           <div>
             <h3 className="font-bold text-lg tracking-wide">UBITY Assistant</h3>
-            <p className="text-sm text-indigo-100 font-medium">Always here to help</p>
+            <p className="text-sm text-gray-300 font-medium">Always here to help</p>
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-1.5 hover:bg-white/20 rounded-full transition-colors duration-200"
+            className="p-1.5 hover:bg-gray-800 rounded-full transition-colors duration-200"
           >
             <X className="w-5 h-5" />
           </button>
@@ -128,7 +124,7 @@ export default function ChatBot() {
               <div
                 className={`max-w-xs px-4 py-2.5 rounded-2xl transition-all duration-200 ${
                   message.sender === 'user'
-                    ? 'bg-gradient-to-br from-indigo-600 to-cyan-600 text-white rounded-br-none'
+                    ? 'bg-black text-white rounded-br-none'
                     : `${theme === 'light' ? 'bg-gray-100 text-gray-900' : 'bg-gray-800 text-white'} rounded-bl-none`
                 }`}
               >
@@ -161,8 +157,8 @@ export default function ChatBot() {
                   onClick={() => handleSendMessage(reply)}
                   className={`text-xs font-semibold px-3 py-2 rounded-lg transition-all duration-200 border ${
                     theme === 'light'
-                      ? 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100'
-                      : 'bg-indigo-900/20 text-indigo-300 border-indigo-700/30 hover:bg-indigo-900/40'
+                      ? 'bg-gray-100 text-black border-gray-300 hover:bg-gray-200'
+                      : 'bg-gray-800 text-white border-gray-700 hover:bg-gray-700'
                   }`}
                 >
                   {reply}
@@ -186,12 +182,12 @@ export default function ChatBot() {
               }}
               placeholder="Type your message..."
               disabled={isLoading}
-              className={`flex-1 px-4 py-2.5 rounded-full border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${inputBgClass} placeholder-gray-500 disabled:opacity-50`}
+              className={`flex-1 px-4 py-2.5 rounded-full border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-black ${inputBgClass} placeholder-gray-500 disabled:opacity-50`}
             />
             <button
               onClick={() => handleSendMessage()}
               disabled={!inputValue.trim() || isLoading}
-              className="p-2.5 rounded-full bg-gradient-to-br from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg"
+              className="p-2.5 rounded-full bg-black hover:bg-gray-900 text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg"
             >
               <Send className="w-5 h-5" />
             </button>
