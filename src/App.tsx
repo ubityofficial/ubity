@@ -10,6 +10,7 @@ import Process from './components/Process';
 import FinalSection from './components/FinalSection';
 import Footer from './components/Footer';
 import InternshipsPage from './components/InternshipsPage';
+import CareerPage from './components/CareerPage';
 import ChatBot from './components/ChatBot';
 
 function MainPage() {
@@ -41,6 +42,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/internships" element={<InternshipsPage />} />
+          <Route path="/careers" element={<CareerPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <ChatBot />
