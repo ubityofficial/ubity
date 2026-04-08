@@ -57,6 +57,19 @@ const TechRobotIcon = ({ className }: { className?: string }) => (
       strokeLinecap="round"
       opacity="0.8"
     />
+    
+    {/* Support Text */}
+    <text
+      x="50"
+      y="58"
+      textAnchor="middle"
+      fontSize="7"
+      fontWeight="600"
+      fill="currentColor"
+      fontFamily="system-ui, -apple-system, sans-serif"
+    >
+      Support
+    </text>
   </svg>
 );
 
