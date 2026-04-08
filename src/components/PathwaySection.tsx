@@ -13,7 +13,29 @@ export default function PathwaySection() {
   return (
     <section className={`py-0 -mt-8 sm:-mt-16 px-3 sm:px-6 ${bgClass} relative transition-colors duration-300 overflow-hidden`}>
       <div className="max-w-7xl mx-auto">
-        {/* Main SVG Canvas for Routes - Hidden on Mobile */}
+        {/* MOBILE: Simple Button Layout */}
+        <div className="sm:hidden flex flex-col gap-3 py-8">
+          <button className={`w-full px-6 py-3 rounded-lg font-plusJakarta font-bold text-sm tracking-wide transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 border backdrop-blur-md ${
+            theme === 'light'
+              ? 'bg-gradient-to-r from-indigo-600/75 to-cyan-600/75 hover:from-indigo-700/85 hover:to-cyan-700/85 text-white border-indigo-400/50'
+              : 'bg-gradient-to-r from-indigo-600/65 to-cyan-600/65 hover:from-indigo-700/75 hover:to-cyan-700/75 text-white border-indigo-400/40'
+          }`}>
+            <Zap className="w-5 h-5" />
+            <span>Software Solutions</span>
+          </button>
+          <button 
+            onClick={() => navigateTo('internships')}
+            className={`w-full px-6 py-3 rounded-lg font-plusJakarta font-bold text-sm tracking-wide transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 border backdrop-blur-md ${
+            theme === 'light'
+              ? 'bg-gradient-to-r from-purple-600/75 to-pink-600/75 hover:from-purple-700/85 hover:to-pink-700/85 text-white border-purple-400/50'
+              : 'bg-gradient-to-r from-purple-600/65 to-pink-600/65 hover:from-purple-700/75 hover:to-pink-700/75 text-white border-purple-400/40'
+          }`}>
+            <Rocket className="w-5 h-5" />
+            <span>Apply for Internships</span>
+          </button>
+        </div>
+
+        {/* DESKTOP: SVG Graph with Buttons */}
         <div className="relative h-64 sm:h-80 md:h-96 mb-8 sm:mb-12 hidden sm:block">
           <svg className="absolute inset-0 w-full h-full" style={{ opacity: 1 }} viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
             <defs>
