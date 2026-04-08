@@ -11,10 +11,10 @@ export default function PathwaySection() {
   const rightPathColor = theme === 'light' ? 'rgba(34, 197, 94, 0.5)' : 'rgba(74, 222, 128, 0.6)';
 
   return (
-    <section className={`py-0 -mt-8 sm:-mt-16 px-3 sm:px-6 ${bgClass} relative transition-colors duration-300 overflow-hidden`}>
+    <section className={`py-2 sm:py-0 -mt-8 sm:-mt-16 px-3 sm:px-6 ${bgClass} relative transition-colors duration-300 overflow-hidden`}>
       <div className="max-w-7xl mx-auto">
         {/* MOBILE: Simple Button Layout */}
-        <div className="sm:hidden flex flex-col gap-3 py-8">
+        <div className="sm:hidden flex flex-col gap-3 py-2 sm:py-8">
           <button className={`w-full px-6 py-3 rounded-lg font-plusJakarta font-bold text-sm tracking-wide transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 border backdrop-blur-md ${
             theme === 'light'
               ? 'bg-gradient-to-r from-indigo-600/75 to-cyan-600/75 hover:from-indigo-700/85 hover:to-cyan-700/85 text-white border-indigo-400/50'
