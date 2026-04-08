@@ -133,7 +133,7 @@ export default function Hero({ tagline = 'Welcome to the future', heading = 'Int
       </div>
 
       {showVerticalLine && (
-        <div className="absolute -bottom-1 sm:bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute -bottom-1 sm:bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block">
           <div className="w-[1px] h-16 bg-gradient-to-b from-blue-500 to-transparent" />
         </div>
       )}
