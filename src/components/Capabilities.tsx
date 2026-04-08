@@ -106,14 +106,6 @@ export default function Capabilities() {
                           {capability.subtitle}
                         </p>
                       )}
-
-                      <p className={`font-plusJakarta font-bold text-xs sm:text-sm tracking-wide cursor-pointer border-b-2 border-blue-600 hover:border-blue-700 pb-1 sm:pb-1 transition-all duration-300 w-fit sm:mx-auto ${
-                      theme === 'light'
-                        ? 'text-blue-600 hover:text-blue-700'
-                        : 'text-blue-400 hover:text-blue-500'
-                    }`}>
-                      click to know more.. !
-                    </p>
                     </div>
                   </div>
 
