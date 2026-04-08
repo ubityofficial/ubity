@@ -10,6 +10,7 @@ import Process from './components/Process';
 import FinalSection from './components/FinalSection';
 import Footer from './components/Footer';
 import InternshipsPage from './components/InternshipsPage';
+import ChatBot from './components/ChatBot';
 
 function MainPage() {
   useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/internships" element={<InternshipsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <ChatBot />
       </NavigationProvider>
     </Router>
   );
