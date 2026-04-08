@@ -9,7 +9,7 @@ interface Message {
   timestamp: Date;
 }
 
-// Custom Tech Robot Icon Component
+// Modern Sleek AI Bot Icon Component
 const TechRobotIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 100 100"
@@ -17,49 +17,46 @@ const TechRobotIcon = ({ className }: { className?: string }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {/* Robot Head */}
-    <rect x="20" y="25" width="60" height="55" rx="6" stroke="currentColor" strokeWidth="2.5" />
-    
-    {/* Head top accent line */}
-    <line x1="20" y1="32" x2="80" y2="32" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
-    
-    {/* Left Eye - Electronic style */}
-    <rect x="28" y="38" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
-    <circle cx="35" cy="45" r="3" fill="currentColor" />
-    
-    {/* Right Eye - Electronic style */}
-    <rect x="58" y="38" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
-    <circle cx="65" cy="45" r="3" fill="currentColor" />
-    
-    {/* Tech antenna/sensor lines on eyes */}
-    <line x1="28" y1="35" x2="25" y2="30" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <line x1="72" y1="35" x2="75" y2="30" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    
-    {/* Mouth - Chat indicator */}
+    {/* Main head - geometric angular shape */}
     <path
-      d="M 32 56 Q 50 66 68 56"
+      d="M 25 35 L 75 35 L 80 50 L 75 65 L 25 65 L 20 50 Z"
       stroke="currentColor"
       strokeWidth="2"
-      strokeLinecap="round"
-      fill="none"
+      strokeLinejoin="round"
     />
     
-    {/* Tech dots on sides */}
-    <circle cx="18" cy="45" r="2" fill="currentColor" opacity="0.7" />
-    <circle cx="82" cy="45" r="2" fill="currentColor" opacity="0.7" />
+    {/* Left eye - minimal square */}
+    <rect x="30" y="42" width="11" height="11" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="35.5" cy="47.5" r="2" fill="currentColor" />
     
-    {/* Vertical circuit lines */}
-    <line x1="50" y1="65" x2="50" y2="75" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
+    {/* Right eye - minimal square */}
+    <rect x="59" y="42" width="11" height="11" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="64.5" cy="47.5" r="2" fill="currentColor" />
     
-    {/* Bottom tech indicator bars */}
-    <rect x="35" y="72" width="3" height="6" fill="currentColor" opacity="0.8" />
-    <rect x="41" y="72" width="3" height="8" fill="currentColor" opacity="0.8" />
-    <rect x="47" y="72" width="3" height="5" fill="currentColor" opacity="0.8" />
-    <rect x="53" y="72" width="3" height="9" fill="currentColor" opacity="0.8" />
-    <rect x="59" y="72" width="3" height="6" fill="currentColor" opacity="0.8" />
+    {/* Center accent line */}
+    <line x1="50" y1="40" x2="50" y2="62" stroke="currentColor" strokeWidth="1" opacity="0.5" />
     
-    {/* Glow Ring */}
-    <circle cx="50" cy="52" r="38" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+    {/* Horizontal divider line */}
+    <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+    
+    {/* Tech accent dots - left side */}
+    <circle cx="22" cy="45" r="1.5" fill="currentColor" opacity="0.7" />
+    <circle cx="22" cy="50" r="1.5" fill="currentColor" opacity="0.7" />
+    <circle cx="22" cy="55" r="1.5" fill="currentColor" opacity="0.7" />
+    
+    {/* Tech accent dots - right side */}
+    <circle cx="78" cy="45" r="1.5" fill="currentColor" opacity="0.7" />
+    <circle cx="78" cy="50" r="1.5" fill="currentColor" opacity="0.7" />
+    <circle cx="78" cy="55" r="1.5" fill="currentColor" opacity="0.7" />
+    
+    {/* Bottom tech indicator pattern */}
+    <path
+      d="M 35 68 L 35 75 M 42 68 L 42 76 M 50 68 L 50 73 M 58 68 L 58 76 M 65 68 L 65 75"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      opacity="0.8"
+    />
   </svg>
 );
 
