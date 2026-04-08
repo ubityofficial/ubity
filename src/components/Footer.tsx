@@ -302,7 +302,7 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
         <div className={`pt-4 sm:pt-8 border-t ${borderClass} flex flex-col md:flex-row md:justify-between md:items-center gap-4 sm:gap-6 transition-colors duration-300`}>
           <div className={`flex flex-col md:flex-row md:items-center gap-2 sm:gap-3 md:gap-4 w-full md:w-auto`}>
             <p className={`text-xs font-semibold tracking-tight text-center md:text-left ${theme === 'light' ? 'text-gray-700' : 'text-gray-200'}`}>
-              © 2026 Meenakumari K R. All rights reserved.
+              © 2026 All rights reserved.
             </p>
             <div className={`hidden md:block w-px h-5 ${theme === 'light' ? 'bg-gray-300' : 'bg-gray-700'}`} />
             <p className={`text-xs sm:text-sm font-black tracking-tight text-center md:text-left ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
