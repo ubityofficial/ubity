@@ -7,9 +7,10 @@ interface FooterProps {
   hideProjectDescription?: boolean;
   hideCallSectionDescription?: boolean;
   hideCallButton?: boolean;
+  hideEnquireSection?: boolean;
 }
 
-export default function Footer({ badgeText = 'Available For Projects', hideProjectDescription = false, hideCallSectionDescription = false, hideCallButton = false }: FooterProps) {
+export default function Footer({ badgeText = 'Available For Projects', hideProjectDescription = false, hideCallSectionDescription = false, hideCallButton = false, hideEnquireSection = false }: FooterProps) {
   const { theme } = useTheme();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [loading, setLoading] = useState(false);
@@ -119,6 +120,7 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
         {/* Newsletter & Enquire Section */}
         <div id="get-in-touch" className={`grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-12 mb-8 sm:mb-20 pb-8 sm:pb-20 border-b ${borderClass}`}>
           {/* Enquire Form */}
+          {!hideEnquireSection && (
           <div>
             <div className="flex items-center gap-2 mb-2 sm:mb-4">
               <div className="relative w-2 h-2 sm:w-2.5 sm:h-2.5">
@@ -196,6 +198,7 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
               </button>
             </div>
           </div>
+          )}
 
           {/* Call Now Section */}
           <div>
