@@ -298,10 +298,54 @@ export default function CareerPage() {
     setSubmitting(true);
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (!formData.fullName || !formData.email || !formData.age || !formData.qualification || !formData.resume) {
+        alert('Please fill all required fields and upload a resume');
+        return;
+      }
+
+      setSubmitting(true);
       
-      setSuccessMessage(`✓ Application submitted successfully! We'll review your profile and get back to you soon.`);
+      // Read resume file and convert to base64
+      let resumeBase64 = '';
+      if (formData.resume) {
+        const reader = new FileReader();
+        resumeBase64 = await new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = () => reject(reader.error);
+          reader.readAsDataURL(formData.resume!);
+        });
+      }
+
+      // Call the API to send application email
+      // Use relative path for production (Vercel), or VITE_API_URL for development
+      const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? (process.env.VITE_API_URL || 'http://localhost:3001')
+        : '';
+      const endpoint = `${apiUrl}/api/send-application`;
+      
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          age: formData.age,
+          qualification: formData.qualification,
+          jobTitle: selectedJobForApplication?.title || 'Not specified',
+          resumeBase64: resumeBase64,
+          resumeFileName: formData.resume?.name || 'resume.pdf',
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to submit application');
+      }
+
+      setSuccessMessage(`✓ Application submitted successfully! Check your email for confirmation.`);
       
       // Reset form after 3 seconds
       setTimeout(() => {
@@ -318,7 +362,8 @@ export default function CareerPage() {
         setSuccessMessage('');
       }, 3000);
     } catch (error) {
-      alert('Error submitting application. Please try again.');
+      console.error('Application error:', error);
+      alert(`Error submitting application: ${error instanceof Error ? error.message : 'Please try again.'}`);
     } finally {
       setSubmitting(false);
     }
