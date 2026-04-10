@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, MapPin, Clock, Briefcase, Users, Award, CheckCircle2, Sparkles, Rocket, Target, X, Upload } from 'lucide-react';
+import Footer from './Footer';
 
 interface JobListing {
   id: string;
@@ -732,21 +733,7 @@ export default function CareerPage() {
         </div>
       </div>
 
-      {/* Footer CTA */}
-      <div className="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 border-t border-gray-200/50 py-20 px-6 overflow-hidden">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-transparent rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <p className="text-lg text-gray-600 mb-10 font-medium">Have questions? Our hiring team is here to help.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:careers@ubity.com" className="px-8 py-3.5 bg-black text-white rounded-xl hover:shadow-2xl hover:shadow-blue-200 font-semibold transition-all hover:scale-105 hover:bg-gray-900">
-              Email Us
-            </a>
-            <a href="/internships" className="px-8 py-3.5 bg-white border-2 border-black text-black rounded-xl hover:bg-gray-50 hover:shadow-lg font-semibold transition-all hover:scale-105">
-              Back to Internships
-            </a>
-          </div>
-        </div>
-      </div>
+      <Footer badgeText="We are hiring" hideProjectDescription={true} hideCallSectionDescription={true} hideCallButton={true} />
 
       <style>{`
         @keyframes blob {
