@@ -8,9 +8,10 @@ interface FooterProps {
   hideCallSectionDescription?: boolean;
   hideCallButton?: boolean;
   hideEnquireSection?: boolean;
+  hideDirectLineSection?: boolean;
 }
 
-export default function Footer({ badgeText = 'Available For Projects', hideProjectDescription = false, hideCallSectionDescription = false, hideCallButton = false, hideEnquireSection = false }: FooterProps) {
+export default function Footer({ badgeText = 'Available For Projects', hideProjectDescription = false, hideCallSectionDescription = false, hideCallButton = false, hideEnquireSection = false, hideDirectLineSection = false }: FooterProps) {
   const { theme } = useTheme();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [loading, setLoading] = useState(false);
@@ -201,6 +202,7 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
           )}
 
           {/* Call Now Section */}
+          {!hideDirectLineSection && (
           <div>
             {!hideCallButton && (
             <div className="flex items-center gap-2 mb-2 sm:mb-4">
@@ -234,6 +236,7 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
               <span className={textClass}>Available 24/7</span>
             </div>
           </div>
+          )}
         </div>
 
         {/* Main Footer Content */}

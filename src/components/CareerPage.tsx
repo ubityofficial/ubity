@@ -778,7 +778,7 @@ export default function CareerPage() {
         </div>
       </div>
 
-      <Footer badgeText="We are hiring" hideProjectDescription={true} hideCallSectionDescription={true} hideCallButton={true} hideEnquireSection={true} />
+      <Footer badgeText="We are hiring" hideProjectDescription={true} hideCallSectionDescription={true} hideCallButton={true} hideEnquireSection={true} hideDirectLineSection={true} />
 
       <style>{`
         @keyframes blob {
