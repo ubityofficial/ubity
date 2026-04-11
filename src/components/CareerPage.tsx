@@ -677,7 +677,7 @@ export default function CareerPage() {
       </div>
 
       {/* Hero Section with Gradient Background */}
-      <div className="relative pt-16 sm:pt-24 md:pt-32 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
+      <div className="relative pt-20 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-40 pointer-events-none">
           <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
           <div className="absolute -bottom-32 right-10 w-72 h-72 bg-gradient-to-tl from-purple-200 to-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
