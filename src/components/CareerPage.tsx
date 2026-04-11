@@ -1096,22 +1096,6 @@ export default function CareerPage() {
                 </div>
               </div>
             </div>
-
-            {/* Bottom Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-16 pt-12 border-t border-white/10">
-              <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">40+</div>
-                <p className="text-sm text-gray-400">Active Roles</p>
-              </div>
-              <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-purple-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">4+</div>
-                <p className="text-sm text-gray-400">Job Types</p>
-              </div>
-              <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-pink-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">86+</div>
-                <p className="text-sm text-gray-400">Team Members</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
