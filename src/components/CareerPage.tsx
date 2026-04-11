@@ -442,17 +442,17 @@ export default function CareerPage() {
       {viewingApplicationPage && selectedJobForApplication && (
         <div className="min-h-screen bg-white">
           {/* Top Navigation Bar */}
-          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-2xl bg-white/10 border-b border-white/20 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-white/5 border-b border-white/10 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold shadow-lg text-sm sm:text-base flex-shrink-0">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold shadow-lg text-xs sm:text-sm flex-shrink-0">
                   U
                 </div>
-                <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent truncate">UBITY</span>
+                <span className="text-sm sm:text-lg font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent truncate">UBITY</span>
               </div>
               <button
                 onClick={() => setViewingApplicationPage(false)}
-                className="px-3 sm:px-6 py-2 sm:py-2.5 bg-black text-white rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 hover:shadow-lg hover:bg-gray-900 flex-shrink-0"
+                className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black text-white rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 hover:shadow-lg hover:bg-gray-900 flex-shrink-0"
               >
                 ← Back
               </button>
@@ -659,17 +659,17 @@ export default function CareerPage() {
       {!viewingApplicationPage && (
         <>
           {/* Navigation Bar */}
-          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-2xl bg-white/10 border-b border-white/20 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-white/5 border-b border-white/10 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
+        <div className="max-w-7xl mx-auto px-6 py-2 sm:py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg text-xs sm:text-sm">
               U
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">UBITY</span>
+            <span className="text-sm sm:text-lg font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">UBITY</span>
           </div>
           <a
             href="/internships"
-            className="px-6 py-2.5 bg-black text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:bg-gray-900"
+            className="px-2 sm:px-4 py-1.5 sm:py-2 bg-black text-white rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 hover:shadow-lg hover:bg-gray-900"
           >
             ← Back
           </a>
