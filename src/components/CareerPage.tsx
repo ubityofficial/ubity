@@ -442,7 +442,7 @@ export default function CareerPage() {
       {viewingApplicationPage && selectedJobForApplication && (
         <div className="min-h-screen bg-white">
           {/* Top Navigation Bar */}
-          <div className="backdrop-blur-xl bg-white/80 border-b border-gray-200/50 shadow-sm mx-4 sm:mx-6 my-4 sm:my-6 rounded-2xl">
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-2xl bg-white/10 border-b border-white/20 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold shadow-lg text-sm sm:text-base flex-shrink-0">
@@ -460,7 +460,7 @@ export default function CareerPage() {
           </div>
 
           {/* Main Content */}
-          <div className="pt-24 pb-16">
+          <div className="pt-32 sm:pt-40 pb-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6">
               {/* Job Header */}
               <div className="mb-8 sm:mb-12">
@@ -659,7 +659,7 @@ export default function CareerPage() {
       {!viewingApplicationPage && (
         <>
           {/* Navigation Bar */}
-          <div className="backdrop-blur-xl bg-white/80 border-b border-gray-200/50 shadow-sm mx-4 sm:mx-6 mt-4 sm:mt-6 rounded-2xl">
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-2xl bg-white/10 border-b border-white/20 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
@@ -677,7 +677,7 @@ export default function CareerPage() {
       </div>
 
       {/* Hero Section with Gradient Background */}
-      <div className="relative pt-20 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
+      <div className="relative pt-32 sm:pt-40 md:pt-44 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-40 pointer-events-none">
           <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
           <div className="absolute -bottom-32 right-10 w-72 h-72 bg-gradient-to-tl from-purple-200 to-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
