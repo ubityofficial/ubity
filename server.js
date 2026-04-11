@@ -205,9 +205,9 @@ app.post('/api/send-application', async (req, res) => {
       from: process.env.EMAIL_FROM,
       to: process.env.EMAIL_TO,
       replyTo: email,
-      subject: \`New Application for \${jobTitle} - \${fullName}\`,
+      subject: `New Application for ${jobTitle} - ${fullName}`,
       html: adminHtmlContent,
-      text: \`Job Position: \${jobTitle}\\nApplicant: \${fullName}\\nEmail: \${email}\\nAge: \${age}\\nQualification: \${qualification}\\n\\nResume attached.\`,
+      text: `Job Position: ${jobTitle}\nApplicant: ${fullName}\nEmail: ${email}\nAge: ${age}\nQualification: ${qualification}\n\nResume attached.`,
       attachments: [],
     };
 
@@ -229,7 +229,7 @@ app.post('/api/send-application', async (req, res) => {
     await transporter.sendMail(mailOptions);
 
     // Send confirmation email to applicant
-    const confirmationHtml = \`
+    const confirmationHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0;">
           <h2 style="margin: 0; font-size: 24px;">Application Received!</h2>
@@ -237,10 +237,10 @@ app.post('/api/send-application', async (req, res) => {
         </div>
         
         <div style="background: #f9f9f9; padding: 30px; border: 1px solid #ddd; border-radius: 0 0 10px 10px;">
-          <p style="color: #333; margin: 0 0 20px 0;">Hi \${fullName},</p>
+          <p style="color: #333; margin: 0 0 20px 0;">Hi ${fullName},</p>
           
           <p style="color: #666; line-height: 1.6; margin: 0 0 15px 0;">
-            Thank you for applying to the <strong>\${jobTitle}</strong> position at UBITY! We're excited to review your application.
+            Thank you for applying to the <strong>${jobTitle}</strong> position at UBITY! We're excited to review your application.
           </p>
           
           <p style="color: #666; line-height: 1.6; margin: 0 0 15px 0;">
@@ -249,9 +249,9 @@ app.post('/api/send-application', async (req, res) => {
 
           <div style="background: white; padding: 20px; border-left: 4px solid #667eea; margin: 20px 0; border-radius: 3px;">
             <p style="margin: 0; color: #333; font-weight: bold;">Application Summary:</p>
-            <p style="margin: 5px 0; color: #666;">Position: \${jobTitle}</p>
-            <p style="margin: 5px 0; color: #666;">Submitted: \${new Date().toLocaleDateString()}</p>
-            <p style="margin: 5px 0; color: #666;">Confirmation sent to: \${email}</p>
+            <p style="margin: 5px 0; color: #666;">Position: ${jobTitle}</p>
+            <p style="margin: 5px 0; color: #666;">Submitted: ${new Date().toLocaleDateString()}</p>
+            <p style="margin: 5px 0; color: #666;">Confirmation sent to: ${email}</p>
           </div>
           
           <p style="color: #666; line-height: 1.6; margin: 0 0 15px 0;">
@@ -271,14 +271,14 @@ app.post('/api/send-application', async (req, res) => {
           </div>
         </div>
       </div>
-    \`;
+    `;
 
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
       to: email,
-      subject: \`We Received Your Application - \${jobTitle} Position\`,
+      subject: `We Received Your Application - ${jobTitle} Position`,
       html: confirmationHtml,
-      text: \`Hi \${fullName},\\n\\nThank you for applying to the \${jobTitle} position at UBITY! We're excited to review your application.\\n\\nOur team will get back to you within 5-7 business days.\\n\\nBest regards,\\nUBITY Team\`,
+      text: `Hi ${fullName},\n\nThank you for applying to the ${jobTitle} position at UBITY! We're excited to review your application.\n\nOur team will get back to you within 5-7 business days.\n\nBest regards,\nUBITY Team`,
     });
 
     return res.status(200).json({
