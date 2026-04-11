@@ -377,6 +377,16 @@ export default function CareerPage() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 overflow-hidden">
+      <style>{`
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
       {/* Animated Background Elements */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-transparent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -620,8 +630,8 @@ export default function CareerPage() {
                 }`}></div>
 
                 <div className="relative space-y-4">
-                  {/* Icon - smaller, more subtle */}
-                  <div className={`w-10 h-10 rounded-md flex items-center justify-center transition-all duration-200 ${
+                  {/* Custom Animated Icons */}
+                  <div className={`w-12 h-12 rounded-md flex items-center justify-center ${
                     isActive 
                       ? 'bg-gradient-to-b from-gray-800 to-gray-700' 
                       : tab.id === 'intern'
@@ -630,17 +640,33 @@ export default function CareerPage() {
                       ? 'bg-purple-50'
                       : 'bg-emerald-50'
                   }`}>
-                    <Icon className={`w-5 h-5 transition-colors duration-200 ${
-                      isActive 
-                        ? tab.id === 'intern' ? 'text-blue-400' :
-                          tab.id === 'parttime' ? 'text-purple-400' :
-                          'text-emerald-400'
-                        : tab.id === 'intern'
-                        ? 'text-blue-600'
-                        : tab.id === 'parttime'
-                        ? 'text-purple-600'
-                        : 'text-emerald-600'
-                    }`} />
+                    {/* Internship Animated Bars */}
+                    {tab.id === 'intern' && (
+                      <div className="flex items-end gap-1.5 h-6">
+                        <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '12px', animationDelay: '0s'}}></div>
+                        <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '16px', animationDelay: '0.2s'}}></div>
+                        <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '20px', animationDelay: '0.4s'}}></div>
+                      </div>
+                    )}
+                    
+                    {/* Part-Time Animated Clock */}
+                    {tab.id === 'parttime' && (
+                      <div className="relative w-5 h-5">
+                        <svg className={`w-5 h-5 ${isActive ? 'text-purple-400' : 'text-purple-600'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="9"></circle>
+                          <polyline points="12 6 12 12 16 14" style={{transformOrigin: '12px 12px', animation: 'rotate 4s linear infinite'}}></polyline>
+                        </svg>
+                      </div>
+                    )}
+                    
+                    {/* Full-Time Animated Stacks */}
+                    {tab.id === 'fulltime' && (
+                      <div className="flex flex-col gap-1" style={{animation: 'none'}}>
+                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-emerald-400' : 'bg-emerald-600'} animate-pulse`} style={{animationDelay: '0s'}}></div>
+                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-emerald-400' : 'bg-emerald-600'} animate-pulse`} style={{animationDelay: '0.15s'}}></div>
+                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-emerald-400' : 'bg-emerald-600'} animate-pulse`} style={{animationDelay: '0.3s'}}></div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Content - clean and professional */}
