@@ -803,21 +803,21 @@ export default function CareerPage() {
                             <MapPin className="w-4 h-4 text-gray-600" />
                             <div className="text-xs text-gray-500 font-semibold uppercase">Location</div>
                           </div>
-                          <div className="text-sm font-semibold text-gray-900">{job.location}</div>
+                          <div className="text-sm font-semibold text-blue-600">{job.location}</div>
                         </div>
                         <div className="border border-gray-200 rounded p-3 bg-white">
                           <div className="flex items-center gap-2 mb-2">
                             <Clock className="w-4 h-4 text-gray-600" />
                             <div className="text-xs text-gray-500 font-semibold uppercase">Type</div>
                           </div>
-                          <div className="text-sm font-semibold text-gray-900">{job.type}</div>
+                          <div className="text-sm font-semibold text-black">{job.type}</div>
                         </div>
                         <div className="border border-gray-200 rounded p-3 bg-white">
                           <div className="flex items-center gap-2 mb-2">
                             <Users className="w-4 h-4 text-gray-600" />
                             <div className="text-xs text-gray-500 font-semibold uppercase">Role</div>
                           </div>
-                          <div className="text-sm font-semibold text-gray-900">{job.role}</div>
+                          <div className="text-sm font-semibold text-orange-600">{job.role}</div>
                         </div>
                       </div>
                     </div>
