@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { ArrowRight, MapPin, Clock, Briefcase, Users, Award, CheckCircle2, Check, Sparkles, Rocket, Target, X, Upload } from 'lucide-react';
 import Footer from './Footer';
 
@@ -239,6 +240,33 @@ const jobs: JobListing[] = [
   },
 ];
 
+// Custom hook for animated counter
+function useCounter(maxValue: number, duration: number = 2000) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number;
+    let animationId: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      setCount(Math.floor(progress * maxValue));
+      
+      if (progress < 1) {
+        animationId = requestAnimationFrame(animate);
+      }
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [maxValue, duration]);
+
+  return count;
+}
+
 export default function CareerPage() {
   const [selectedCategory, setSelectedCategory] = useState<'intern' | 'parttime' | 'fulltime'>('intern');
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
@@ -255,6 +283,11 @@ export default function CareerPage() {
     availableImmediately: false,
     remoteWork: true,
   });
+
+  // Animated counters
+  const positionsCount = useCounter(40, 2000);
+  const membersCount = useCounter(86, 2000);
+  const typesCount = useCounter(4, 2000);
 
   const categorizedJobs = jobs.filter(job => job.category === selectedCategory);
 
@@ -668,17 +701,17 @@ export default function CareerPage() {
           {/* Stats */}
           <div className="flex flex-col sm:flex-row gap-8 justify-center bg-gradient-to-r from-gray-50/80 to-blue-50/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200/50 shadow-xl">
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-cyan-600 transition-all">40+</div>
+              <div className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-cyan-600 transition-all">{positionsCount}+</div>
               <div className="text-sm text-gray-600 mt-2 font-medium">Open Positions</div>
             </div>
             <div className="h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">86+</div>
+              <div className="text-4xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">{membersCount}+</div>
               <div className="text-sm text-gray-600 mt-2 font-medium">Happy Team Members</div>
             </div>
             <div className="h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">4+</div>
+              <div className="text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">{typesCount}+</div>
               <div className="text-sm text-gray-600 mt-2 font-medium">Employment Types</div>
             </div>
           </div>
