@@ -604,26 +604,95 @@ export default function CareerPage() {
               <button
                 key={tab.id}
                 onClick={() => setSelectedCategory(tab.id as any)}
-                className={`relative p-8 rounded-2xl transition-all duration-500 group cursor-pointer overflow-hidden ${
+                className={`relative p-8 rounded-2xl transition-all duration-500 group cursor-pointer overflow-hidden backdrop-blur-lg ${
                   isActive
-                    ? `bg-gradient-to-br ${tab.activeGradient} text-white shadow-2xl ${tab.shadowColor} scale-105 border border-white/20`
-                    : `bg-gradient-to-br ${tab.bgGradient} border ${tab.borderColor} hover:shadow-lg hover:border-gray-300`
+                    ? `bg-gradient-to-br ${tab.activeGradient} text-white shadow-2xl ${tab.shadowColor} scale-105 border border-white/30 ring-2 ring-white/20`
+                    : `bg-gradient-to-br ${tab.bgGradient} border-2 ${tab.borderColor} hover:shadow-2xl hover:border-gray-300 hover:scale-105`
                 }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
+                {/* Animated background gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${
+                  isActive ? 'from-white/20 to-transparent' : 'from-white/10 to-transparent'
+                } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+
+                {/* Top accent line */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${
+                  tab.id === 'intern' ? 'from-blue-500 via-cyan-500 to-transparent' :
+                  tab.id === 'parttime' ? 'from-purple-500 via-pink-500 to-transparent' :
+                  'from-emerald-500 via-teal-500 to-transparent'
+                } opacity-${isActive ? '100' : '40'} group-hover:opacity-100 transition-opacity duration-300`}></div>
+
+                <div className="relative z-10 space-y-4">
+                  {/* Icon Container */}
+                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg transform group-hover:scale-110 ${
                     isActive 
-                      ? 'bg-white/25 shadow-lg' 
-                      : 'bg-gradient-to-br from-blue-100 to-blue-50 group-hover:from-blue-200 group-hover:to-blue-100'
+                      ? 'bg-white/25 shadow-2xl' 
+                      : tab.id === 'intern'
+                      ? 'bg-gradient-to-br from-blue-200 to-cyan-100 group-hover:from-blue-300 group-hover:to-cyan-200'
+                      : tab.id === 'parttime'
+                      ? 'bg-gradient-to-br from-purple-200 to-pink-100 group-hover:from-purple-300 group-hover:to-pink-200'
+                      : 'bg-gradient-to-br from-emerald-200 to-teal-100 group-hover:from-emerald-300 group-hover:to-teal-200'
                   }`}>
-                    <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-blue-600'}`} />
+                    <Icon className={`w-7 h-7 transition-colors duration-300 ${
+                      isActive 
+                        ? 'text-white' 
+                        : tab.id === 'intern'
+                        ? 'text-blue-700 group-hover:text-blue-800'
+                        : tab.id === 'parttime'
+                        ? 'text-purple-700 group-hover:text-purple-800'
+                        : 'text-emerald-700 group-hover:text-emerald-800'
+                    }`} />
                   </div>
-                  <h3 className="text-lg font-bold mb-2">{tab.label}</h3>
-                  <p className={`text-sm ${isActive ? 'text-white/90' : 'text-gray-600'}`}>
-                    {tab.count} {tab.count === 1 ? 'opening' : 'openings'}
-                  </p>
+
+                  {/* Content Section */}
+                  <div className="space-y-2">
+                    <h3 className={`text-lg font-bold transition-colors duration-300 ${
+                      isActive ? 'text-white' : 'text-gray-900'
+                    }`}>
+                      {tab.label}
+                    </h3>
+                    
+                    {/* Opening stats with decoration */}
+                    <div className="space-y-2">
+                      <div className={`flex items-center gap-2 text-sm font-semibold ${
+                        isActive ? 'text-white/90' : 'text-gray-700'
+                      }`}>
+                        <span className={`w-2 h-2 rounded-full animate-pulse ${
+                          tab.id === 'intern' ? 'bg-blue-400' :
+                          tab.id === 'parttime' ? 'bg-purple-400' :
+                          'bg-emerald-400'
+                        }`}></span>
+                        <span>
+                          {tab.count} {tab.count === 1 ? 'opening' : 'openings'}
+                        </span>
+                      </div>
+
+                      {/* Badge hint */}
+                      <div className={`text-xs font-semibold tracking-widest uppercase opacity-75 transition-opacity duration-300 ${
+                        isActive ? 'text-white/75' : 'text-gray-600'
+                      }`}>
+                        {tab.id === 'intern' ? '🎓 Learning' :
+                         tab.id === 'parttime' ? '⏱️ Flexible' :
+                         '💼 Career'}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Arrow indicator */}
+                  <div className={`flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform group-hover:translate-x-1 ${
+                    isActive ? 'text-white/90' : 'text-gray-600'
+                  }`}>
+                    <span>View Roles</span>
+                    <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'rotate-90' : ''}`} />
+                  </div>
                 </div>
+
+                {/* Glow effect on hover */}
+                <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl bg-gradient-to-br ${
+                  tab.id === 'intern' ? 'from-blue-500 to-cyan-500' :
+                  tab.id === 'parttime' ? 'from-purple-500 to-pink-500' :
+                  'from-emerald-500 to-teal-500'
+                }`}></div>
               </button>
             );
           })}
