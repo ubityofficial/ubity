@@ -242,7 +242,7 @@ const jobs: JobListing[] = [
 export default function CareerPage() {
   const [selectedCategory, setSelectedCategory] = useState<'intern' | 'parttime' | 'fulltime'>('intern');
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
-  const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const [viewingApplicationPage, setViewingApplicationPage] = useState(false);
   const [selectedJobForApplication, setSelectedJobForApplication] = useState<JobListing | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -260,7 +260,8 @@ export default function CareerPage() {
 
   const handleApplyClick = (job: JobListing) => {
     setSelectedJobForApplication(job);
-    setShowApplicationForm(true);
+    setViewingApplicationPage(true);
+    window.scrollTo(0, 0);
   };
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -358,7 +359,7 @@ export default function CareerPage() {
           availableImmediately: false,
           remoteWork: true,
         });
-        setShowApplicationForm(false);
+        setViewingApplicationPage(false);
         setSuccessMessage('');
       }, 3000);
     } catch (error) {
@@ -394,155 +395,228 @@ export default function CareerPage() {
         <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-tr from-pink-100 to-transparent rounded-full mix-blend-multiply filter blur-3xl opacity-20" style={{ animation: 'blob 7s infinite 4s' }}></div>
       </div>
 
-      {/* Application Form Modal */}
-      {showApplicationForm && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6 overflow-y-auto">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full my-8">
-            {/* Form Header */}
-            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-8 flex items-center justify-between rounded-t-2xl">
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-2">Apply Now</h2>
-                <p className="text-blue-50">{selectedJobForApplication?.title}</p>
+      {/* Application Page - Full Page View */}
+      {viewingApplicationPage && selectedJobForApplication && (
+        <div className="min-h-screen bg-white">
+          {/* Top Navigation Bar */}
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-xl bg-white/80 border-b border-gray-200/50 shadow-sm">
+            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+                  U
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">UBITY</span>
               </div>
               <button
-                onClick={() => setShowApplicationForm(false)}
-                className="text-white hover:bg-white/20 p-2 rounded-lg transition-colors"
+                onClick={() => setViewingApplicationPage(false)}
+                className="px-6 py-2.5 bg-black text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:bg-gray-900"
               >
-                <X className="w-6 h-6" />
+                ← Back to Job Listings
               </button>
             </div>
+          </div>
 
-            {/* Form Content */}
-            <form onSubmit={handleSubmitApplication} className="p-8 space-y-6">
-              {successMessage && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 font-semibold">
-                  {successMessage}
+          {/* Main Content */}
+          <div className="pt-24 pb-16">
+            <div className="max-w-4xl mx-auto px-6">
+              {/* Job Header */}
+              <div className="mb-12">
+                <div className="mb-6">
+                  <h1 className="text-4xl font-bold text-gray-900 mb-4">{selectedJobForApplication.title}</h1>
+                  <div className="flex flex-wrap gap-4 mb-6">
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <MapPin className="w-5 h-5 text-blue-600" />
+                      <span className="font-semibold">{selectedJobForApplication.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <Briefcase className="w-5 h-5 text-purple-600" />
+                      <span className="font-semibold">{selectedJobForApplication.type}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <Clock className="w-5 h-5 text-orange-600" />
+                      <span className="font-semibold">{selectedJobForApplication.role}</span>
+                    </div>
+                  </div>
                 </div>
-              )}
 
-              {/* Name Field */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleFormChange}
-                  placeholder="John Doe"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  required
-                />
+                {/* Job Description */}
+                <div className="bg-gradient-to-r from-blue-50/40 via-transparent to-blue-50/30 border border-gray-300 rounded-lg p-6 backdrop-blur-sm mb-8">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4">Job Description</h2>
+                  <p className="text-gray-700 leading-relaxed">{selectedJobForApplication.description}</p>
+                </div>
+
+                {/* Responsibilities */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4">Responsibilities</h2>
+                  <ul className="space-y-3">
+                    {selectedJobForApplication.perks.map((perk, idx) => (
+                      <li key={idx} className="flex gap-3 text-gray-700">
+                        <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-bold mt-1 flex-shrink-0">
+                          ✓
+                        </div>
+                        <span>{perk}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Qualifications / Requirements */}
+                <div className="bg-white border border-gray-300 rounded-lg p-6 mb-8">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4">Qualifications & Requirements</h2>
+                  <ul className="space-y-3">
+                    {selectedJobForApplication.requirements.map((req, idx) => (
+                      <li key={idx} className="flex gap-3 text-gray-700">
+                        <span className="w-6 h-6 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-xs font-semibold flex-shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <span>{req}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Application Form Section */}
+                <div className="bg-white border border-gray-300 rounded-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Apply for this position</h2>
+                  
+                  <form onSubmit={handleSubmitApplication} className="space-y-6">
+                    {successMessage && (
+                      <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 font-semibold">
+                        {successMessage}
+                      </div>
+                    )}
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Full Name */}
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                        <input
+                          type="text"
+                          name="fullName"
+                          value={formData.fullName}
+                          onChange={handleFormChange}
+                          placeholder="John Doe"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          required
+                        />
+                      </div>
+
+                      {/* Email */}
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleFormChange}
+                          placeholder="john@example.com"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          required
+                        />
+                      </div>
+
+                      {/* Age */}
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Age *</label>
+                        <input
+                          type="number"
+                          name="age"
+                          value={formData.age}
+                          onChange={handleFormChange}
+                          placeholder="25"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          required
+                          min="18"
+                          max="80"
+                        />
+                      </div>
+
+                      {/* Qualification */}
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Qualification *</label>
+                        <select
+                          name="qualification"
+                          value={formData.qualification}
+                          onChange={handleFormChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          required
+                        >
+                          <option value="">Select your qualification</option>
+                          <option value="highschool">High School / 12th Pass</option>
+                          <option value="diploma">Diploma</option>
+                          <option value="bachelor">Bachelor's Degree</option>
+                          <option value="master">Master's Degree</option>
+                          <option value="phd">PhD</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Resume Upload - Full Width */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Resume (PDF/DOC) *</label>
+                      <label className="w-full px-4 py-4 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-center gap-3">
+                        <Upload className="w-5 h-5 text-gray-600" />
+                        <span className="text-gray-700 font-medium">
+                          {formData.resume ? formData.resume.name : 'Click to upload or drag and drop'}
+                        </span>
+                        <input
+                          type="file"
+                          name="resume"
+                          onChange={handleFileChange}
+                          accept=".pdf,.doc,.docx"
+                          className="hidden"
+                          required
+                        />
+                      </label>
+                      <p className="text-xs text-gray-500 mt-2">Supported formats: PDF, DOC, DOCX (Max 5MB)</p>
+                    </div>
+
+                    {/* Checkboxes */}
+                    <div className="space-y-4 bg-gray-50 p-5 rounded-lg">
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="availableImmediately"
+                          checked={formData.availableImmediately}
+                          onChange={handleFormChange}
+                          className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className="text-gray-700 font-medium">Available to start immediately</span>
+                      </label>
+                      
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="remoteWork"
+                          checked={formData.remoteWork}
+                          onChange={handleFormChange}
+                          className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className="text-gray-700 font-medium">Prefer remote work</span>
+                      </label>
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full px-8 py-4 bg-black hover:bg-gray-900 text-white font-bold text-lg rounded-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {submitting ? 'Submitting...' : 'Submit Application'}
+                    </button>
+                  </form>
+                </div>
               </div>
-
-              {/* Email Field */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleFormChange}
-                  placeholder="john@example.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  required
-                />
-              </div>
-
-              {/* Age Field */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Age *</label>
-                <input
-                  type="number"
-                  name="age"
-                  value={formData.age}
-                  onChange={handleFormChange}
-                  placeholder="25"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  required
-                  min="18"
-                  max="80"
-                />
-              </div>
-
-              {/* Qualification Field */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Qualification *</label>
-                <select
-                  name="qualification"
-                  value={formData.qualification}
-                  onChange={handleFormChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  required
-                >
-                  <option value="">Select your qualification</option>
-                  <option value="highschool">High School / 12th Pass</option>
-                  <option value="diploma">Diploma</option>
-                  <option value="bachelor">Bachelor's Degree</option>
-                  <option value="master">Master's Degree</option>
-                  <option value="phd">PhD</option>
-                </select>
-              </div>
-
-              {/* Resume Upload */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Resume *</label>
-                <label className="w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-center gap-3">
-                  <Upload className="w-5 h-5 text-gray-600" />
-                  <span className="text-gray-700">
-                    {formData.resume ? formData.resume.name : 'Click to upload or drag and drop'}
-                  </span>
-                  <input
-                    type="file"
-                    name="resume"
-                    onChange={handleFileChange}
-                    accept=".pdf,.doc,.docx"
-                    className="hidden"
-                    required
-                  />
-                </label>
-                <p className="text-xs text-gray-500 mt-2">Supported formats: PDF, DOC, DOCX (Max 5MB)</p>
-              </div>
-
-              {/* Toggle Options */}
-              <div className="space-y-4 bg-gray-50 p-4 rounded-xl">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="availableImmediately"
-                    checked={formData.availableImmediately}
-                    onChange={handleFormChange}
-                    className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-                  />
-                  <span className="text-gray-700 font-medium">Available to start immediately</span>
-                </label>
-                
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="remoteWork"
-                    checked={formData.remoteWork}
-                    onChange={handleFormChange}
-                    className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-                  />
-                  <span className="text-gray-700 font-medium">Prefer remote work</span>
-                </label>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full px-8 py-4 bg-black hover:bg-gray-900 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {submitting ? 'Submitting...' : 'Submit Application'}
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       )}
 
-      {/* Navigation Bar */}
-      <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-xl bg-white/80 border-b border-gray-200/50 shadow-sm">
+      {/* Main Career Page - Show only when not viewing application page */}
+      {!viewingApplicationPage && (
+        <>
+          {/* Navigation Bar */}
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-xl bg-white/80 border-b border-gray-200/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
@@ -872,6 +946,8 @@ export default function CareerPage() {
           )}
         </div>
       </div>
+      </>
+      )}
 
       {/* Bottom CTA Section */}
       <div className="relative mx-6 my-20 py-24 px-8 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl overflow-hidden shadow-2xl">
