@@ -677,24 +677,24 @@ export default function CareerPage() {
       </div>
 
       {/* Hero Section with Gradient Background */}
-      <div className="relative pt-32 pb-24 px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
+      <div className="relative pt-16 sm:pt-24 md:pt-32 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-40 pointer-events-none">
           <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
           <div className="absolute -bottom-32 right-10 w-72 h-72 bg-gradient-to-tl from-purple-200 to-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto text-center mb-16 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-4 py-2.5 rounded-full mb-8 font-semibold text-sm border border-blue-200/50 shadow-lg shadow-blue-100">
-            <Sparkles className="w-4 h-4" />
+        <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12 md:mb-16 relative z-10">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full mb-4 sm:mb-6 md:mb-8 font-semibold text-xs sm:text-sm border border-blue-200/50 shadow-lg shadow-blue-100">
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
             We're Growing & We Want You
           </div>
-          <h1 className="text-6xl sm:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
             Build Your Future<br />
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               With UBITY
             </span>
           </h1>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed">
             Join a talented team of innovators and builders. We're looking for exceptional people to help us revolutionize the industry.
           </p>
           
