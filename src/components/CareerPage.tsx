@@ -581,7 +581,7 @@ export default function CareerPage() {
                           onChange={handleFormChange}
                           className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
                         />
-                        <span className="text-gray-700 font-medium">Available to start immediately</span>
+                        <span className="text-blue-600 font-semibold">Available to start immediately</span>
                       </label>
                       
                       <label className="flex items-center gap-3 cursor-pointer">
@@ -590,9 +590,9 @@ export default function CareerPage() {
                           name="remoteWork"
                           checked={formData.remoteWork}
                           onChange={handleFormChange}
-                          className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                          className="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
                         />
-                        <span className="text-gray-700 font-medium">Prefer remote work</span>
+                        <span className="text-purple-600 font-semibold">Prefer remote work</span>
                       </label>
                     </div>
 
