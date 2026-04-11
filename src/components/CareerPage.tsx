@@ -668,17 +668,17 @@ export default function CareerPage() {
           {/* Stats */}
           <div className="flex flex-col sm:flex-row gap-8 justify-center bg-gradient-to-r from-gray-50/80 to-blue-50/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200/50 shadow-xl">
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-cyan-600 transition-all">9+</div>
+              <div className="text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-cyan-600 transition-all">40+</div>
               <div className="text-sm text-gray-600 mt-2 font-medium">Open Positions</div>
             </div>
             <div className="h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">100+</div>
+              <div className="text-4xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">86+</div>
               <div className="text-sm text-gray-600 mt-2 font-medium">Happy Team Members</div>
             </div>
             <div className="h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">3</div>
+              <div className="text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">4+</div>
               <div className="text-sm text-gray-600 mt-2 font-medium">Employment Types</div>
             </div>
           </div>
