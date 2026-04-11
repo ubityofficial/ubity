@@ -741,7 +741,7 @@ export default function CareerPage() {
                 {expandedJob === job.id && (
                   <div className="mt-6 pt-6 border-t border-gray-200 space-y-6 animate-in fade-in duration-200">
                     {/* Role Overview Section */}
-                    <div className="bg-white border border-gray-300 rounded-lg p-5">
+                    <div className="bg-gradient-to-r from-blue-50/40 via-transparent to-blue-50/30 border border-gray-300 rounded-lg p-5 backdrop-blur-sm">
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 flex-shrink-0 border border-gray-200">
                           <Briefcase className="w-6 h-6" />
