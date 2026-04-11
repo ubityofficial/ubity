@@ -699,19 +699,19 @@ export default function CareerPage() {
           </p>
           
           {/* Stats */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center bg-gradient-to-r from-gray-50/80 to-blue-50/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-200/50 shadow-xl">
+          <div className="flex flex-row gap-3 sm:gap-8 justify-center bg-gradient-to-r from-gray-50/80 to-blue-50/80 backdrop-blur-sm p-4 sm:p-8 rounded-2xl border border-gray-200/50 shadow-xl">
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-cyan-600 transition-all">{positionsCount}+</div>
+              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-cyan-600 transition-all">{positionsCount}+</div>
               <div className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 font-medium">Open Positions</div>
             </div>
-            <div className="h-8 sm:h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
+            <div className="h-6 sm:h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">{membersCount}+</div>
+              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">{membersCount}+</div>
               <div className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 font-medium">Happy Team Members</div>
             </div>
-            <div className="h-8 sm:h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
+            <div className="h-6 sm:h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">{typesCount}+</div>
+              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">{typesCount}+</div>
               <div className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 font-medium">Employment Types</div>
             </div>
           </div>
