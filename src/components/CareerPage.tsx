@@ -722,114 +722,241 @@ export default function CareerPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-8 sm:mb-16 text-center">Find Your Perfect Role</h2>
         
-        {/* Category Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        {/* Category Selection - Mobile Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {categoryTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = selectedCategory === tab.id as any;
             return (
-              <button
-                key={tab.id}
-                onClick={() => setSelectedCategory(tab.id as any)}
-                className={`relative p-6 rounded-lg transition-all duration-200 group cursor-pointer border ${
-                  isActive
-                    ? `bg-gradient-to-b from-gray-950 to-gray-900 text-white border-gray-700 shadow-lg`
-                    : `bg-white border-gray-200 text-gray-900 hover:border-gray-300 hover:shadow-md`
-                }`}
-              >
-                {/* Top accent line - minimal */}
-                <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors duration-200 ${
-                  isActive
-                    ? tab.id === 'intern' ? 'bg-blue-600' :
-                      tab.id === 'parttime' ? 'bg-purple-600' :
-                      'bg-emerald-600'
-                    : 'bg-gray-200'
-                }`}></div>
+              <div key={tab.id}>
+                <button
+                  onClick={() => setSelectedCategory(tab.id as any)}
+                  className={`w-full relative p-4 sm:p-6 rounded-lg transition-all duration-200 group cursor-pointer border ${
+                    isActive
+                      ? `bg-gradient-to-b from-gray-950 to-gray-900 text-white border-gray-700 shadow-lg`
+                      : `bg-white border-gray-200 text-gray-900 hover:border-gray-300 hover:shadow-md`
+                  }`}
+                >
+                  {/* Top accent line - minimal */}
+                  <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors duration-200 ${
+                    isActive
+                      ? tab.id === 'intern' ? 'bg-blue-600' :
+                        tab.id === 'parttime' ? 'bg-purple-600' :
+                        'bg-emerald-600'
+                      : 'bg-gray-200'
+                  }`}></div>
 
-                <div className="relative space-y-4">
-                  {/* Custom Animated Icons */}
-                  <div className={`w-12 h-12 rounded-md flex items-center justify-center ${
-                    isActive 
-                      ? 'bg-gradient-to-b from-gray-800 to-gray-700' 
-                      : tab.id === 'intern'
-                      ? 'bg-blue-50'
-                      : tab.id === 'parttime'
-                      ? 'bg-purple-50'
-                      : 'bg-orange-50'
-                  }`}>
-                    {/* Internship Animated Bars */}
-                    {tab.id === 'intern' && (
-                      <div className="flex items-end gap-1.5 h-6">
-                        <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '12px', animationDelay: '0s'}}></div>
-                        <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '16px', animationDelay: '0.2s'}}></div>
-                        <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '20px', animationDelay: '0.4s'}}></div>
-                      </div>
-                    )}
-                    
-                    {/* Part-Time Animated Clock */}
-                    {tab.id === 'parttime' && (
-                      <div className="relative w-5 h-5">
-                        <svg className={`w-5 h-5 ${isActive ? 'text-purple-400' : 'text-purple-600'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="9"></circle>
-                          <polyline points="12 6 12 12 16 14" style={{transformOrigin: '12px 12px', animation: 'rotate 4s linear infinite'}}></polyline>
-                        </svg>
-                      </div>
-                    )}
-                    
-                    {/* Full-Time Animated Stacks */}
-                    {tab.id === 'fulltime' && (
-                      <div className="flex flex-col gap-1" style={{animation: 'none'}}>
-                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0s'}}></div>
-                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0.15s'}}></div>
-                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0.3s'}}></div>
-                      </div>
-                    )}
-                  </div>
+                  <div className="relative space-y-4">
+                    {/* Custom Animated Icons */}
+                    <div className={`w-12 h-12 rounded-md flex items-center justify-center ${
+                      isActive 
+                        ? 'bg-gradient-to-b from-gray-800 to-gray-700' 
+                        : tab.id === 'intern'
+                        ? 'bg-blue-50'
+                        : tab.id === 'parttime'
+                        ? 'bg-purple-50'
+                        : 'bg-orange-50'
+                    }`}>
+                      {/* Internship Animated Bars */}
+                      {tab.id === 'intern' && (
+                        <div className="flex items-end gap-1.5 h-6">
+                          <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '12px', animationDelay: '0s'}}></div>
+                          <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '16px', animationDelay: '0.2s'}}></div>
+                          <div className={`w-1.5 rounded-sm animate-pulse ${isActive ? 'bg-blue-400' : 'bg-blue-600'}`} style={{height: '20px', animationDelay: '0.4s'}}></div>
+                        </div>
+                      )}
+                      
+                      {/* Part-Time Animated Clock */}
+                      {tab.id === 'parttime' && (
+                        <div className="relative w-5 h-5">
+                          <svg className={`w-5 h-5 ${isActive ? 'text-purple-400' : 'text-purple-600'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <polyline points="12 6 12 12 16 14" style={{transformOrigin: '12px 12px', animation: 'rotate 4s linear infinite'}}></polyline>
+                          </svg>
+                        </div>
+                      )}
+                      
+                      {/* Full-Time Animated Stacks */}
+                      {tab.id === 'fulltime' && (
+                        <div className="flex flex-col gap-1" style={{animation: 'none'}}>
+                          <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0s'}}></div>
+                          <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0.15s'}}></div>
+                          <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0.3s'}}></div>
+                        </div>
+                      )}
+                    </div>
 
-                  {/* Content - clean and professional */}
-                  <div className="space-y-1 sm:space-y-2">
-                    <h3 className={`text-base sm:text-lg font-bold tracking-tight ${
-                      isActive ? 'text-white' : 'text-gray-900'
+                    {/* Content - clean and professional */}
+                    <div className="space-y-1 sm:space-y-2">
+                      <h3 className={`text-base sm:text-lg font-bold tracking-tight ${
+                        isActive ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {tab.label}
+                      </h3>
+                      
+                      {/* Openings count */}
+                      <div className={`text-sm sm:text-base font-semibold ${
+                        isActive ? 'text-gray-200' : 'text-gray-700'
+                      }`}>
+                        {tab.count} {tab.count === 1 ? 'opening' : 'openings'}
+                      </div>
+                    </div>
+
+                    {/* CTA - minimal */}
+                    <div className={`text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1 ${
+                      isActive 
+                        ? 'text-blue-400' 
+                        : tab.id === 'intern'
+                        ? 'text-blue-600'
+                        : tab.id === 'parttime'
+                        ? 'text-purple-600'
+                        : 'text-orange-600'
                     }`}>
-                      {tab.label}
-                    </h3>
-                    
-                    {/* Openings count */}
-                    <div className={`text-sm sm:text-base font-semibold ${
-                      isActive ? 'text-gray-200' : 'text-gray-700'
-                    }`}>
-                      {tab.count} {tab.count === 1 ? 'opening' : 'openings'}
+                      <span>View Roles</span>
+                      <ArrowRight className={`w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-200 ${isActive ? 'translate-x-0.5' : ''}`} />
                     </div>
                   </div>
+                </button>
 
-                  {/* CTA - minimal */}
-                  <div className={`text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1 ${
-                    isActive 
-                      ? 'text-blue-400' 
-                      : tab.id === 'intern'
-                      ? 'text-blue-600'
-                      : tab.id === 'parttime'
-                      ? 'text-purple-600'
-                      : 'text-orange-600'
-                  }`}>
-                    <span>View Roles</span>
-                    <ArrowRight className={`w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-200 ${isActive ? 'translate-x-0.5' : ''}`} />
+                {/* Mobile: Show jobs directly under active category card */}
+                {isActive && categorizedJobs.length > 0 && (
+                  <div className="md:hidden space-y-4 mt-4">
+                    {categorizedJobs.map((job, index) => (
+                      <div
+                        key={job.id}
+                        className={`group relative bg-white border rounded-lg p-3 sm:p-4 transition-all duration-200 cursor-pointer ${
+                          expandedJob === job.id 
+                            ? 'border-gray-400 shadow-md' 
+                            : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                        }`}
+                        onClick={() => setExpandedJob(expandedJob === job.id ? null : job.id)}
+                      >
+                        {/* Header Section */}
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-3 mb-2 sm:mb-3">
+                          <div className="flex-1 min-w-0">
+                            {/* Position Number */}
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded flex items-center justify-center bg-gray-900 text-white text-xs font-bold flex-shrink-0">
+                                {index + 1}
+                              </div>
+                              <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{job.title}</h3>
+                            </div>
+                            
+                            {/* Role & Info */}
+                            <p className="text-xs text-gray-500 font-medium mb-2 uppercase tracking-tight">{job.role}</p>
+                            
+                            {/* Job Details Row */}
+                            <div className="flex flex-wrap gap-2 text-xs">
+                              <div className="flex items-center gap-1 text-gray-700">
+                                <MapPin className="w-3 h-3 text-gray-600 flex-shrink-0" />
+                                <span className="truncate">{job.location}</span>
+                              </div>
+                              <div className="flex items-center gap-1 text-gray-700">
+                                <Briefcase className="w-3 h-3 text-gray-600 flex-shrink-0" />
+                                <span className="truncate">{job.type}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Toggle Button */}
+                          <button className={`p-1.5 rounded transition-all duration-200 flex-shrink-0 ${
+                            expandedJob === job.id
+                              ? 'bg-gray-900 text-white'
+                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                          }`}>
+                            <ArrowRight className={`w-4 h-4 transition-transform duration-200 ${expandedJob === job.id ? 'rotate-90' : ''}`} />
+                          </button>
+                        </div>
+
+                        {/* Expanded Content */}
+                        {expandedJob === job.id && (
+                          <div className="mt-3 pt-3 border-t border-gray-200 space-y-3 animate-in fade-in duration-200">
+                            {/* Role Overview Section */}
+                            <div className="bg-gradient-to-r from-blue-50/40 via-transparent to-blue-50/30 border border-gray-300 rounded-lg p-3 backdrop-blur-sm">
+                              <div className="flex flex-col gap-2">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 flex-shrink-0 border border-gray-200">
+                                    <Briefcase className="w-4 h-4" />
+                                  </div>
+                                  <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wide">Overview</h4>
+                                </div>
+                                <p className="text-xs text-gray-700 leading-relaxed">{job.description}</p>
+                              </div>
+                            </div>
+
+                            {/* Requirements Section */}
+                            <div className="bg-white border border-gray-300 rounded-lg p-3">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 border border-gray-200 flex-shrink-0">
+                                  <CheckCircle2 className="w-4 h-4" />
+                                </div>
+                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wide">Requirements</h4>
+                              </div>
+                              <ul className="space-y-1.5">
+                                {job.requirements.slice(0, 3).map((req, idx) => (
+                                  <li key={idx} className="flex gap-2 text-xs text-gray-700">
+                                    <span className="w-5 h-5 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-xs font-semibold flex-shrink-0 border border-gray-300">
+                                      {idx + 1}
+                                    </span>
+                                    <span className="leading-relaxed">{req}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Benefits Section */}
+                            <div className="bg-white border border-gray-300 rounded-lg p-3">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700 border border-gray-200 flex-shrink-0">
+                                  <Award className="w-4 h-4" />
+                                </div>
+                                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wide">Benefits</h4>
+                              </div>
+                              <ul className="space-y-1.5">
+                                {job.perks.slice(0, 2).map((perk, idx) => (
+                                  <li key={idx} className="flex gap-2 text-xs text-gray-700">
+                                    <Check className="w-3.5 h-3.5 text-gray-400 flex-shrink-0 mt-0.5" />
+                                    <span className="leading-relaxed">{perk}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex flex-col gap-2 pt-2">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleApplyClick(job);
+                                }}
+                                className="w-full px-3 py-2 bg-gray-900 hover:bg-gray-800 text-white font-bold text-xs rounded-lg transition-all duration-200 flex items-center justify-center gap-1.5"
+                              >
+                                <Rocket className="w-3 h-3" />
+                                Apply Now
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                </div>
-              </button>
+                )}
+              </div>
             );
           })}
         </div>
 
-        {/* Job Listings */}
-        <div className="space-y-6">
-          {categorizedJobs.length === 0 ? (
-            <div className="text-center py-16">
-              <Target className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <p className="text-lg text-gray-600">No positions available in this category.</p>
-            </div>
-          ) : (
-            categorizedJobs.map((job, index) => (
+        {/* Desktop: Show jobs in separate section below */}
+        <div className="hidden md:block">
+          {/* Job Listings */}
+          <div className="space-y-6">
+            {categorizedJobs.length === 0 ? (
+              <div className="text-center py-16">
+                <Target className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                <p className="text-lg text-gray-600">No positions available in this category.</p>
+              </div>
+            ) : (
+              categorizedJobs.map((job, index) => (
               <div
                 key={job.id}
                 className={`group relative bg-white border rounded-lg p-4 sm:p-6 transition-all duration-200 cursor-pointer ${
@@ -987,6 +1114,7 @@ export default function CareerPage() {
               </div>
             ))
           )}
+        </div>
         </div>
       </div>
       </>
