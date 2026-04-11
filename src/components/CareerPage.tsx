@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, MapPin, Clock, Briefcase, Users, Award, CheckCircle2, Sparkles, Rocket, Target, X, Upload } from 'lucide-react';
+import { ArrowRight, MapPin, Clock, Briefcase, Users, Award, CheckCircle2, Check, Sparkles, Rocket, Target, X, Upload } from 'lucide-react';
 import Footer from './Footer';
 
 interface JobListing {
@@ -596,7 +596,7 @@ export default function CareerPage() {
         <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">Find Your Perfect Role</h2>
         
         {/* Category Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {categoryTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = selectedCategory === tab.id as any;
@@ -604,95 +604,84 @@ export default function CareerPage() {
               <button
                 key={tab.id}
                 onClick={() => setSelectedCategory(tab.id as any)}
-                className={`relative p-8 rounded-2xl transition-all duration-500 group cursor-pointer overflow-hidden backdrop-blur-lg ${
+                className={`relative p-6 rounded-lg transition-all duration-200 group cursor-pointer border ${
                   isActive
-                    ? `bg-gradient-to-br ${tab.activeGradient} text-white shadow-2xl ${tab.shadowColor} scale-105 border border-white/30 ring-2 ring-white/20`
-                    : `bg-gradient-to-br ${tab.bgGradient} border-2 ${tab.borderColor} hover:shadow-2xl hover:border-gray-300 hover:scale-105`
+                    ? `bg-gradient-to-b from-gray-950 to-gray-900 text-white border-gray-700 shadow-lg`
+                    : `bg-white border-gray-200 text-gray-900 hover:border-gray-300 hover:shadow-md`
                 }`}
               >
-                {/* Animated background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${
-                  isActive ? 'from-white/20 to-transparent' : 'from-white/10 to-transparent'
-                } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                {/* Top accent line - minimal */}
+                <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors duration-200 ${
+                  isActive
+                    ? tab.id === 'intern' ? 'bg-blue-600' :
+                      tab.id === 'parttime' ? 'bg-purple-600' :
+                      'bg-emerald-600'
+                    : 'bg-gray-200'
+                }`}></div>
 
-                {/* Top accent line */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${
-                  tab.id === 'intern' ? 'from-blue-500 via-cyan-500 to-transparent' :
-                  tab.id === 'parttime' ? 'from-purple-500 via-pink-500 to-transparent' :
-                  'from-emerald-500 via-teal-500 to-transparent'
-                } opacity-${isActive ? '100' : '40'} group-hover:opacity-100 transition-opacity duration-300`}></div>
-
-                <div className="relative z-10 space-y-4">
-                  {/* Icon Container */}
-                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg transform group-hover:scale-110 ${
+                <div className="relative space-y-4">
+                  {/* Icon - smaller, more subtle */}
+                  <div className={`w-10 h-10 rounded-md flex items-center justify-center transition-all duration-200 ${
                     isActive 
-                      ? 'bg-white/25 shadow-2xl' 
+                      ? 'bg-gradient-to-b from-gray-800 to-gray-700' 
                       : tab.id === 'intern'
-                      ? 'bg-gradient-to-br from-blue-200 to-cyan-100 group-hover:from-blue-300 group-hover:to-cyan-200'
+                      ? 'bg-blue-50'
                       : tab.id === 'parttime'
-                      ? 'bg-gradient-to-br from-purple-200 to-pink-100 group-hover:from-purple-300 group-hover:to-pink-200'
-                      : 'bg-gradient-to-br from-emerald-200 to-teal-100 group-hover:from-emerald-300 group-hover:to-teal-200'
+                      ? 'bg-purple-50'
+                      : 'bg-emerald-50'
                   }`}>
-                    <Icon className={`w-7 h-7 transition-colors duration-300 ${
+                    <Icon className={`w-5 h-5 transition-colors duration-200 ${
                       isActive 
-                        ? 'text-white' 
+                        ? tab.id === 'intern' ? 'text-blue-400' :
+                          tab.id === 'parttime' ? 'text-purple-400' :
+                          'text-emerald-400'
                         : tab.id === 'intern'
-                        ? 'text-blue-700 group-hover:text-blue-800'
+                        ? 'text-blue-600'
                         : tab.id === 'parttime'
-                        ? 'text-purple-700 group-hover:text-purple-800'
-                        : 'text-emerald-700 group-hover:text-emerald-800'
+                        ? 'text-purple-600'
+                        : 'text-emerald-600'
                     }`} />
                   </div>
 
-                  {/* Content Section */}
+                  {/* Content - clean and professional */}
                   <div className="space-y-2">
-                    <h3 className={`text-lg font-bold transition-colors duration-300 ${
+                    <h3 className={`text-sm font-semibold tracking-tight ${
                       isActive ? 'text-white' : 'text-gray-900'
                     }`}>
                       {tab.label}
                     </h3>
                     
-                    {/* Opening stats with decoration */}
-                    <div className="space-y-2">
-                      <div className={`flex items-center gap-2 text-sm font-semibold ${
-                        isActive ? 'text-white/90' : 'text-gray-700'
-                      }`}>
-                        <span className={`w-2 h-2 rounded-full animate-pulse ${
-                          tab.id === 'intern' ? 'bg-blue-400' :
-                          tab.id === 'parttime' ? 'bg-purple-400' :
-                          'bg-emerald-400'
-                        }`}></span>
-                        <span>
-                          {tab.count} {tab.count === 1 ? 'opening' : 'openings'}
-                        </span>
-                      </div>
+                    {/* Openings count */}
+                    <div className={`text-xs font-medium ${
+                      isActive ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                      {tab.count} {tab.count === 1 ? 'opening' : 'openings'}
+                    </div>
 
-                      {/* Badge hint */}
-                      <div className={`text-xs font-semibold tracking-widest uppercase opacity-75 transition-opacity duration-300 ${
-                        isActive ? 'text-white/75' : 'text-gray-600'
-                      }`}>
-                        {tab.id === 'intern' ? '🎓 Learning' :
-                         tab.id === 'parttime' ? '⏱️ Flexible' :
-                         '💼 Career'}
-                      </div>
+                    {/* Category type */}
+                    <div className={`text-xs font-semibold tracking-wide uppercase opacity-75 ${
+                      isActive ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
+                      {tab.id === 'intern' ? 'Learning' :
+                       tab.id === 'parttime' ? 'Flexible' :
+                       'Career'}
                     </div>
                   </div>
 
-                  {/* Arrow indicator */}
-                  <div className={`flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform group-hover:translate-x-1 ${
-                    isActive ? 'text-white/90' : 'text-gray-600'
+                  {/* CTA - minimal */}
+                  <div className={`text-xs font-semibold transition-all duration-200 flex items-center gap-1 ${
+                    isActive 
+                      ? 'text-blue-400' 
+                      : tab.id === 'intern'
+                      ? 'text-blue-600'
+                      : tab.id === 'parttime'
+                      ? 'text-purple-600'
+                      : 'text-emerald-600'
                   }`}>
                     <span>View Roles</span>
-                    <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'rotate-90' : ''}`} />
+                    <ArrowRight className={`w-3 h-3 transition-transform duration-200 ${isActive ? 'translate-x-0.5' : ''}`} />
                   </div>
                 </div>
-
-                {/* Glow effect on hover */}
-                <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl bg-gradient-to-br ${
-                  tab.id === 'intern' ? 'from-blue-500 to-cyan-500' :
-                  tab.id === 'parttime' ? 'from-purple-500 to-pink-500' :
-                  'from-emerald-500 to-teal-500'
-                }`}></div>
               </button>
             );
           })}
@@ -709,243 +698,105 @@ export default function CareerPage() {
             categorizedJobs.map((job, index) => (
               <div
                 key={job.id}
-                className={`group relative bg-gradient-to-br ${
-                  selectedCategory === 'intern' ? 'from-white to-blue-50/40' :
-                  selectedCategory === 'parttime' ? 'from-white to-purple-50/40' :
-                  'from-white to-emerald-50/40'
-                } border backdrop-blur-lg rounded-2xl p-8 transition-all duration-300 cursor-pointer overflow-hidden ${
+                className={`group relative bg-white border rounded-lg p-6 transition-all duration-200 cursor-pointer ${
                   expandedJob === job.id 
-                    ? selectedCategory === 'intern'
-                      ? 'ring-2 ring-blue-500 border-blue-300 shadow-2xl shadow-blue-200/50' 
-                      : selectedCategory === 'parttime'
-                      ? 'ring-2 ring-purple-500 border-purple-300 shadow-2xl shadow-purple-200/50'
-                      : 'ring-2 ring-emerald-500 border-emerald-300 shadow-2xl shadow-emerald-200/50'
-                    : 'border-gray-200/80 hover:border-gray-300 shadow-lg hover:shadow-2xl'
+                    ? 'border-gray-400 shadow-md' 
+                    : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
                 }`}
                 onClick={() => setExpandedJob(expandedJob === job.id ? null : job.id)}
               >
-                {/* Animated Background Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${
-                  selectedCategory === 'intern' ? 'from-blue-50/50 to-cyan-50/30' :
-                  selectedCategory === 'parttime' ? 'from-purple-50/50 to-pink-50/30' :
-                  'from-emerald-50/50 to-teal-50/30'
-                } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-
-                {/* Accent Line */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${
-                  selectedCategory === 'intern' ? 'from-blue-500 via-cyan-500 to-transparent' :
-                  selectedCategory === 'parttime' ? 'from-purple-500 via-pink-500 to-transparent' :
-                  'from-emerald-500 via-teal-500 to-transparent'
-                }`}></div>
-
-                {/* Job Header */}
-                <div className="relative flex items-start justify-between mb-6">
+                {/* Header Section */}
+                <div className="flex items-start justify-between gap-4 mb-4">
                   <div className="flex-1">
-                    {/* Category & Badges Row */}
-                    <div className="flex items-center gap-3 mb-4 flex-wrap">
-                      {/* Position Number Badge */}
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-lg bg-gradient-to-br ${
-                        selectedCategory === 'intern' ? 'from-blue-500 to-cyan-600' :
-                        selectedCategory === 'parttime' ? 'from-purple-500 to-pink-600' :
-                        'from-emerald-500 to-teal-600'
-                      }`}>
+                    {/* Position Number */}
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 rounded flex items-center justify-center bg-gray-900 text-white text-xs font-bold">
                         {index + 1}
                       </div>
-
-                      {/* Highlight Badge */}
-                      <div className={`px-3 py-1 rounded-full text-xs font-bold tracking-wide animate-pulse ${
-                        selectedCategory === 'intern' 
-                          ? 'bg-blue-100 text-blue-700 border border-blue-200' 
-                          : selectedCategory === 'parttime'
-                          ? 'bg-purple-100 text-purple-700 border border-purple-200'
-                          : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-                      }`}>
-                        ⭐ FEATURED
-                      </div>
-
-                      {/* Growth Badge */}
-                      <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        selectedCategory === 'intern' 
-                          ? 'bg-gradient-to-r from-blue-500/10 to-cyan-500/10 text-blue-700 border border-blue-200' 
-                          : selectedCategory === 'parttime'
-                          ? 'bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-700 border border-purple-200'
-                          : 'bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-emerald-700 border border-emerald-200'
-                      }`}>
-                        📈 Growth Path
-                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900">{job.title}</h3>
                     </div>
-
-                    {/* Title & Role */}
-                    <div>
-                      <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${
-                        selectedCategory === 'intern' ? 'from-blue-600 to-cyan-600' :
-                        selectedCategory === 'parttime' ? 'from-purple-600 to-pink-600' :
-                        'from-emerald-600 to-teal-600'
-                      }">{job.title}</h3>
-                      <p className="text-sm text-gray-500 mt-2 font-semibold tracking-wide uppercase">{job.role}</p>
-                    </div>
-
-                    {/* Info Tags */}
-                    <div className="flex flex-wrap gap-4 text-sm mt-4">
-                      <div className="flex items-center gap-2 text-gray-700 font-medium bg-white/50 px-3 py-1.5 rounded-lg hover:bg-white transition-colors">
-                        <MapPin className={`w-4 h-4 ${
-                          selectedCategory === 'intern' ? 'text-blue-500' :
-                          selectedCategory === 'parttime' ? 'text-purple-500' :
-                          'text-emerald-500'
-                        }`} />
+                    
+                    {/* Role & Info */}
+                    <p className="text-xs text-gray-500 font-medium mb-3 uppercase tracking-tight">{job.role}</p>
+                    
+                    {/* Job Details Row */}
+                    <div className="flex flex-wrap gap-4 text-xs">
+                      <div className="flex items-center gap-1.5 text-gray-700">
+                        <MapPin className="w-3.5 h-3.5 text-gray-600" />
                         <span>{job.location}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-700 font-medium bg-white/50 px-3 py-1.5 rounded-lg hover:bg-white transition-colors">
-                        <Briefcase className={`w-4 h-4 ${
-                          selectedCategory === 'intern' ? 'text-blue-500' :
-                          selectedCategory === 'parttime' ? 'text-purple-500' :
-                          'text-emerald-500'
-                        }`} />
+                      <div className="flex items-center gap-1.5 text-gray-700">
+                        <Briefcase className="w-3.5 h-3.5 text-gray-600" />
                         <span>{job.type}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-700 font-medium bg-white/50 px-3 py-1.5 rounded-lg hover:bg-white transition-colors">
-                        <Users className={`w-4 h-4 ${
-                          selectedCategory === 'intern' ? 'text-blue-500' :
-                          selectedCategory === 'parttime' ? 'text-purple-500' :
-                          'text-emerald-500'
-                        }`} />
+                      <div className="flex items-center gap-1.5 text-gray-700">
+                        <Users className="w-3.5 h-3.5 text-gray-600" />
                         <span>{job.requirements.length} Requirements</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Action Button */}
-                  <button className={`p-3 rounded-xl transition-all duration-300 flex-shrink-0 font-semibold ml-4 ${
+                  {/* Toggle Button */}
+                  <button className={`p-2 rounded transition-all duration-200 flex-shrink-0 ${
                     expandedJob === job.id
-                      ? selectedCategory === 'intern'
-                        ? 'bg-gradient-to-br from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/40 scale-110'
-                        : selectedCategory === 'parttime'
-                        ? 'bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/40 scale-110'
-                        : 'bg-gradient-to-br from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/40 scale-110'
-                      : selectedCategory === 'intern'
-                      ? 'bg-gradient-to-br from-blue-100 to-cyan-100 text-blue-600 hover:shadow-lg'
-                      : selectedCategory === 'parttime'
-                      ? 'bg-gradient-to-br from-purple-100 to-pink-100 text-purple-600 hover:shadow-lg'
-                      : 'bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-600 hover:shadow-lg'
+                      ? 'bg-gray-900 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}>
-                    <ArrowRight className={`w-6 h-6 transition-transform duration-300 ${expandedJob === job.id ? 'rotate-90' : ''}`} />
+                    <ArrowRight className={`w-5 h-5 transition-transform duration-200 ${expandedJob === job.id ? 'rotate-90' : ''}`} />
                   </button>
                 </div>
 
                 {/* Expanded Content */}
                 {expandedJob === job.id && (
-                  <div className="relative mt-8 pt-8 border-t border-gray-200/50 space-y-8 animate-in fade-in slide-in-from-top-2 duration-300">
-                    {/* Description with Icon */}
-                    <div className="space-y-4">
-                      <h4 className={`text-lg font-bold text-gray-900 flex items-center gap-3 ${
-                        selectedCategory === 'intern' ? 'text-blue-900' :
-                        selectedCategory === 'parttime' ? 'text-purple-900' :
-                        'text-emerald-900'
-                      }`}>
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white shadow-lg bg-gradient-to-br ${
-                          selectedCategory === 'intern' ? 'from-blue-500 to-cyan-600' :
-                          selectedCategory === 'parttime' ? 'from-purple-500 to-pink-600' :
-                          'from-emerald-500 to-teal-600'
-                        }`}>
-                          <Rocket className="w-5 h-5" />
-                        </div>
-                        About This Role
-                      </h4>
-                      <p className="text-gray-600 leading-relaxed bg-gradient-to-r from-transparent to-blue-50/30 p-4 rounded-lg border border-gray-200/50">{job.description}</p>
+                  <div className="mt-6 pt-6 border-t border-gray-200 space-y-6 animate-in fade-in duration-200">
+                    {/* Description */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2 uppercase tracking-tight">About This Role</h4>
+                      <p className="text-sm text-gray-700 leading-relaxed">{job.description}</p>
                     </div>
 
-                    {/* Two Column Layout with Enhanced Styling */}
-                    <div className="grid md:grid-cols-2 gap-8">
+                    {/* Two Column Layout */}
+                    <div className="grid md:grid-cols-2 gap-6">
                       {/* Requirements */}
-                      <div className="space-y-4">
-                        <h4 className={`text-lg font-bold text-gray-900 flex items-center gap-3 ${
-                          selectedCategory === 'intern' ? 'text-blue-900' :
-                          selectedCategory === 'parttime' ? 'text-purple-900' :
-                          'text-emerald-900'
-                        }`}>
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white shadow-lg bg-gradient-to-br ${
-                            selectedCategory === 'intern' ? 'from-blue-500 to-cyan-600' :
-                            selectedCategory === 'parttime' ? 'from-purple-500 to-pink-600' :
-                            'from-emerald-500 to-teal-600'
-                          }`}>
-                            <Users className="w-5 h-5" />
-                          </div>
-                          What We're Looking For
-                        </h4>
-                        <ul className="space-y-3">
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-tight">Requirements</h4>
+                        <ul className="space-y-2">
                           {job.requirements.map((req, idx) => (
-                            <li key={idx} className="flex gap-3 text-gray-600 p-3 rounded-lg hover:bg-gray-50/80 transition-colors duration-200 group/item">
-                              <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 transition-all duration-200 ${
-                                selectedCategory === 'intern' ? 'text-blue-500 group-hover/item:scale-110' :
-                                selectedCategory === 'parttime' ? 'text-purple-500 group-hover/item:scale-110' :
-                                'text-emerald-500 group-hover/item:scale-110'
-                              }`} />
-                              <span className="font-medium">{req}</span>
+                            <li key={idx} className="flex gap-2 text-sm text-gray-700">
+                              <CheckCircle2 className="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" />
+                              <span>{req}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
                       {/* Perks */}
-                      <div className="space-y-4">
-                        <h4 className={`text-lg font-bold text-gray-900 flex items-center gap-3 ${
-                          selectedCategory === 'intern' ? 'text-blue-900' :
-                          selectedCategory === 'parttime' ? 'text-purple-900' :
-                          'text-emerald-900'
-                        }`}>
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white shadow-lg bg-gradient-to-br ${
-                            selectedCategory === 'intern' ? 'from-blue-500 to-cyan-600' :
-                            selectedCategory === 'parttime' ? 'from-purple-500 to-pink-600' :
-                            'from-emerald-500 to-teal-600'
-                          }`}>
-                            <Award className="w-5 h-5" />
-                          </div>
-                          What You'll Get
-                        </h4>
-                        <ul className="space-y-3">
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-tight">Benefits</h4>
+                        <ul className="space-y-2">
                           {job.perks.map((perk, idx) => (
-                            <li key={idx} className="flex gap-3 text-gray-600 p-3 rounded-lg hover:bg-gradient-to-r hover:from-yellow-50 hover:to-transparent transition-colors duration-200 group/perk">
-                              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5 shadow-lg bg-gradient-to-br transition-transform duration-200 group-hover/perk:scale-110 ${
-                                selectedCategory === 'intern' ? 'from-blue-500 to-cyan-600' :
-                                selectedCategory === 'parttime' ? 'from-purple-500 to-pink-600' :
-                                'from-emerald-500 to-teal-600'
-                              }`}>
-                                ✨
-                              </div>
-                              <span className="font-medium">{perk}</span>
+                            <li key={idx} className="flex gap-2 text-sm text-gray-700">
+                              <Check className="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" />
+                              <span>{perk}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                     </div>
 
-                    {/* CTA Section */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200/50">
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 pt-4 border-t border-gray-200">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleApplyClick(job);
                         }}
-                        className={`flex-1 px-8 py-4 font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden group shadow-lg hover:shadow-2xl hover:scale-105 text-white bg-gradient-to-r ${
-                          selectedCategory === 'intern' 
-                            ? 'from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-blue-500/40 hover:shadow-blue-600/60' 
-                            : selectedCategory === 'parttime'
-                            ? 'from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-purple-500/40 hover:shadow-pink-600/60'
-                            : 'from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-emerald-500/40 hover:shadow-teal-600/60'
-                        }`}
+                        className="flex-1 px-4 py-2.5 bg-gray-900 hover:bg-gray-800 text-white font-semibold text-sm rounded transition-colors duration-200"
                       >
-                        <Rocket className="w-5 h-5 relative group-hover:scale-110 transition-transform" />
-                        <span className="relative">🎯 Apply Now</span>
+                        Apply Now
                       </button>
-                      <button className={`flex-1 px-8 py-4 border-2 font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2 group ${
-                        selectedCategory === 'intern'
-                          ? 'border-blue-600 text-blue-600 hover:bg-blue-50'
-                          : selectedCategory === 'parttime'
-                          ? 'border-purple-600 text-purple-600 hover:bg-purple-50'
-                          : 'border-emerald-600 text-emerald-600 hover:bg-emerald-50'
-                      }`}>
-                        <Users className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                        <span>💼 Learn More</span>
+                      <button className="flex-1 px-4 py-2.5 border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold text-sm rounded transition-colors duration-200">
+                        Learn More
                       </button>
                     </div>
                   </div>
