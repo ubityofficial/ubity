@@ -23,9 +23,9 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
-  const bgLight = 'bg-gradient-to-r from-black/40 via-gray-800/30 to-black/40 dark:from-white/5 dark:via-white/8 dark:to-white/5';
+  const bgLight = 'bg-gradient-to-r from-white/10 via-white/5 to-white/10 dark:from-white/8 dark:via-white/5 dark:to-white/8';
   const textLight = 'text-gray-900 dark:text-white';
-  const borderLight = 'border-blue-400/30 dark:border-cyan-400/20';
+  const borderLight = 'border-blue-400/20 dark:border-cyan-400/30';
   const hoverLight = 'hover:text-blue-600 dark:hover:text-cyan-400';
 
   const navItems = [
@@ -54,7 +54,7 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 rounded-2xl sm:rounded-3xl backdrop-blur-lg ${bgLight} border ${borderLight} transition-all duration-300 shadow-xl`}>
+    <header className={`fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 rounded-3xl sm:rounded-4xl backdrop-blur-2xl ${bgLight} border ${borderLight} transition-all duration-300 shadow-2xl`}>
       <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
