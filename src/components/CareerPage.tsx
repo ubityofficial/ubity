@@ -372,7 +372,7 @@ export default function CareerPage() {
   const categoryTabs = [
     { id: 'intern', label: 'Internship Programs', icon: Award, count: 2, bgGradient: 'from-blue-50 via-cyan-50 to-blue-50', borderColor: 'border-blue-200', activeGradient: 'from-blue-600 via-blue-500 to-cyan-600', shadowColor: 'shadow-blue-200' },
     { id: 'parttime', label: 'Part-Time Roles', icon: Clock, count: 4, bgGradient: 'from-purple-50 via-pink-50 to-purple-50', borderColor: 'border-purple-200', activeGradient: 'from-purple-600 via-purple-500 to-pink-600', shadowColor: 'shadow-purple-200' },
-    { id: 'fulltime', label: 'Full-Time Careers', icon: Briefcase, count: 3, bgGradient: 'from-emerald-50 via-teal-50 to-emerald-50', borderColor: 'border-emerald-200', activeGradient: 'from-emerald-600 via-emerald-500 to-teal-600', shadowColor: 'shadow-emerald-200' }
+    { id: 'fulltime', label: 'Full-Time Careers', icon: Briefcase, count: 3, bgGradient: 'from-orange-50 via-amber-50 to-orange-50', borderColor: 'border-orange-200', activeGradient: 'from-orange-600 via-orange-500 to-amber-600', shadowColor: 'shadow-orange-200' }
   ];
 
   return (
@@ -594,7 +594,7 @@ export default function CareerPage() {
             </div>
             <div className="h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent hidden sm:block"></div>
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-br from-emerald-600 to-teal-600 bg-clip-text text-transparent group-hover:from-emerald-500 group-hover:to-cyan-600 transition-all">3</div>
+              <div className="text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">3</div>
               <div className="text-sm text-gray-600 mt-2 font-medium">Employment Types</div>
             </div>
           </div>
@@ -638,7 +638,7 @@ export default function CareerPage() {
                       ? 'bg-blue-50'
                       : tab.id === 'parttime'
                       ? 'bg-purple-50'
-                      : 'bg-emerald-50'
+                      : 'bg-orange-50'
                   }`}>
                     {/* Internship Animated Bars */}
                     {tab.id === 'intern' && (
@@ -662,9 +662,9 @@ export default function CareerPage() {
                     {/* Full-Time Animated Stacks */}
                     {tab.id === 'fulltime' && (
                       <div className="flex flex-col gap-1" style={{animation: 'none'}}>
-                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-emerald-400' : 'bg-emerald-600'} animate-pulse`} style={{animationDelay: '0s'}}></div>
-                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-emerald-400' : 'bg-emerald-600'} animate-pulse`} style={{animationDelay: '0.15s'}}></div>
-                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-emerald-400' : 'bg-emerald-600'} animate-pulse`} style={{animationDelay: '0.3s'}}></div>
+                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0s'}}></div>
+                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0.15s'}}></div>
+                        <div className={`w-4 h-1.5 rounded-sm ${isActive ? 'bg-orange-400' : 'bg-orange-600'} animate-pulse`} style={{animationDelay: '0.3s'}}></div>
                       </div>
                     )}
                   </div>
@@ -693,7 +693,7 @@ export default function CareerPage() {
                       ? 'text-blue-600'
                       : tab.id === 'parttime'
                       ? 'text-purple-600'
-                      : 'text-emerald-600'
+                      : 'text-orange-600'
                   }`}>
                     <span>View Roles</span>
                     <ArrowRight className={`w-3 h-3 transition-transform duration-200 ${isActive ? 'translate-x-0.5' : ''}`} />
