@@ -740,53 +740,95 @@ export default function CareerPage() {
                 {/* Expanded Content */}
                 {expandedJob === job.id && (
                   <div className="mt-6 pt-6 border-t border-gray-200 space-y-6 animate-in fade-in duration-200">
-                    {/* Description */}
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2 uppercase tracking-tight">About This Role</h4>
-                      <p className="text-sm text-gray-700 leading-relaxed">{job.description}</p>
+                    {/* Role Overview Section */}
+                    <div className="bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                          <Rocket className="w-5 h-5" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-sm font-bold text-gray-900 mb-1">ABOUT THIS ROLE</h4>
+                          <p className="text-sm text-gray-700 leading-relaxed">{job.description}</p>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Two Column Layout */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Requirements */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-tight">Requirements</h4>
-                        <ul className="space-y-2">
+                    {/* Requirements & Benefits Two Column */}
+                    <div className="grid md:grid-cols-2 gap-5">
+                      {/* Requirements Section */}
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="w-8 h-8 rounded-lg bg-gray-900 flex items-center justify-center text-white flex-shrink-0">
+                            <CheckCircle2 className="w-4 h-4" />
+                          </div>
+                          <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Requirements</h4>
+                        </div>
+                        <ul className="space-y-3">
                           {job.requirements.map((req, idx) => (
-                            <li key={idx} className="flex gap-2 text-sm text-gray-700">
-                              <CheckCircle2 className="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" />
-                              <span>{req}</span>
+                            <li key={idx} className="flex gap-3 text-sm text-gray-700">
+                              <span className="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                                {idx + 1}
+                              </span>
+                              <span className="font-medium">{req}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Perks */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-tight">Benefits</h4>
-                        <ul className="space-y-2">
+                      {/* Benefits Section */}
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="w-8 h-8 rounded-lg bg-gray-900 flex items-center justify-center text-white flex-shrink-0">
+                            <Award className="w-4 h-4" />
+                          </div>
+                          <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Benefits</h4>
+                        </div>
+                        <ul className="space-y-3">
                           {job.perks.map((perk, idx) => (
-                            <li key={idx} className="flex gap-2 text-sm text-gray-700">
-                              <Check className="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" />
-                              <span>{perk}</span>
+                            <li key={idx} className="flex gap-3 text-sm text-gray-700">
+                              <div className="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                                ✓
+                              </div>
+                              <span className="font-medium">{perk}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-3 pt-4 border-t border-gray-200">
+                    {/* Job Metadata Section */}
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                      <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Job Specifications</h4>
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="text-center">
+                          <div className="text-xs text-gray-500 font-semibold uppercase tracking-tight mb-1">Location</div>
+                          <div className="text-sm font-bold text-gray-900">{job.location}</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xs text-gray-500 font-semibold uppercase tracking-tight mb-1">Type</div>
+                          <div className="text-sm font-bold text-gray-900">{job.type}</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xs text-gray-500 font-semibold uppercase tracking-tight mb-1">Role</div>
+                          <div className="text-sm font-bold text-gray-900">{job.role}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons - Enhanced */}
+                    <div className="flex gap-3 pt-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleApplyClick(job);
                         }}
-                        className="flex-1 px-4 py-2.5 bg-gray-900 hover:bg-gray-800 text-white font-semibold text-sm rounded transition-colors duration-200"
+                        className="flex-1 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-bold text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                       >
+                        <Rocket className="w-4 h-4" />
                         Apply Now
                       </button>
-                      <button className="flex-1 px-4 py-2.5 border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold text-sm rounded transition-colors duration-200">
+                      <button className="flex-1 px-6 py-3 border-2 border-gray-900 text-gray-900 hover:bg-gray-50 font-bold text-sm rounded-lg transition-all duration-200 flex items-center justify-center gap-2">
+                        <Upload className="w-4 h-4" />
                         Learn More
                       </button>
                     </div>
