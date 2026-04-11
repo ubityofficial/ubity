@@ -995,53 +995,46 @@ export default function CareerPage() {
       {/* Bottom CTA Section - Advanced Professional Design */}
       <div className="relative mx-6 my-20 overflow-hidden">
         {/* Main CTA Card */}
-        <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 -z-10 overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-500/20 to-transparent rounded-full filter blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-500/20 to-transparent rounded-full filter blur-3xl"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-          </div>
-
+        <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
           {/* Content Grid */}
           <div className="max-w-6xl mx-auto px-12 py-20 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Left Section - Content */}
               <div className="space-y-8">
                 {/* Badge */}
-                <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 border border-blue-500/30 rounded-full backdrop-blur">
-                  <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-                  <span className="text-sm font-semibold text-blue-300">Open Opportunities</span>
+                <div className="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 border border-blue-300 rounded-full">
+                  <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></div>
+                  <span className="text-sm font-semibold text-blue-700">Open Opportunities</span>
                 </div>
 
                 {/* Heading */}
                 <div className="space-y-4">
-                  <h2 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
+                  <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                     Ready to Build<br />
-                    <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    <span className="text-blue-600">
                       Your Future?
                     </span>
                   </h2>
-                  <div className="w-20 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                  <div className="w-20 h-1.5 bg-blue-600 rounded-full"></div>
                 </div>
 
                 {/* Description */}
-                <p className="text-lg text-slate-300 leading-relaxed max-w-xl">
+                <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
                   Can't find the perfect role? No problem! We're always looking for talented individuals who are passionate about innovation and growth. Share your profile with us and let's explore what's possible together.
                 </p>
 
                 {/* Benefits */}
                 <div className="space-y-3 pt-6">
-                  <div className="flex items-center gap-3 text-slate-200">
-                    <Check className="w-5 h-5 text-green-400" />
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Check className="w-5 h-5 text-green-600" />
                     <span className="text-sm font-medium">Quick response within 24-48 hours</span>
                   </div>
-                  <div className="flex items-center gap-3 text-slate-200">
-                    <Check className="w-5 h-5 text-green-400" />
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Check className="w-5 h-5 text-green-600" />
                     <span className="text-sm font-medium">Join a team of 86+ innovators</span>
                   </div>
-                  <div className="flex items-center gap-3 text-slate-200">
-                    <Check className="w-5 h-5 text-green-400" />
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Check className="w-5 h-5 text-green-600" />
                     <span className="text-sm font-medium">Competitive benefits & growth opportunities</span>
                   </div>
                 </div>
@@ -1049,29 +1042,26 @@ export default function CareerPage() {
 
               {/* Right Section - Interactive Card */}
               <div className="relative group">
-                {/* Card Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
-                
                 {/* Card */}
-                <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-8 shadow-lg group-hover:border-white/40 transition-all duration-300">
+                <div className="relative bg-gradient-to-br from-blue-50 to-blue-100/50 border border-blue-200 rounded-2xl p-8 shadow-md group-hover:shadow-lg transition-all duration-300">
                   {/* Card Header */}
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-2xl font-bold text-white">Upload Profile</h3>
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/30 to-purple-500/30 flex items-center justify-center border border-blue-400/30">
-                      <Rocket className="w-5 h-5 text-blue-300" />
+                    <h3 className="text-2xl font-bold text-gray-900">Upload Profile</h3>
+                    <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center">
+                      <Rocket className="w-5 h-5 text-white" />
                     </div>
                   </div>
 
                   {/* Upload Area */}
                   <div className="mb-6">
                     <label className="group/upload cursor-pointer block">
-                      <div className="relative flex flex-col items-center justify-center p-8 border-2 border-dashed border-white/30 rounded-xl hover:border-blue-400/50 hover:bg-blue-500/5 transition-all duration-300">
+                      <div className="relative flex flex-col items-center justify-center p-8 border-2 border-dashed border-blue-300 rounded-xl hover:border-blue-500 hover:bg-blue-100 transition-all duration-300 bg-white">
                         <div className="text-center">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mx-auto mb-3 group-hover/upload:scale-110 transition-transform">
-                            <Upload className="w-6 h-6 text-blue-300" />
+                          <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-3 group-hover/upload:scale-110 transition-transform">
+                            <Upload className="w-6 h-6 text-blue-600" />
                           </div>
-                          <p className="text-sm font-semibold text-white mb-1">Drag & drop your resume</p>
-                          <p className="text-xs text-slate-400">or click to select (PDF, DOC)</p>
+                          <p className="text-sm font-semibold text-gray-900 mb-1">Drag & drop your resume</p>
+                          <p className="text-xs text-gray-500">or click to select (PDF, DOC)</p>
                         </div>
                       </div>
                       <input type="file" className="hidden" accept=".pdf,.doc,.docx" />
@@ -1080,17 +1070,17 @@ export default function CareerPage() {
 
                   {/* Quick Actions */}
                   <div className="space-y-3">
-                    <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 flex items-center justify-center gap-2 group/btn">
+                    <button className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2 group/btn">
                       <span>Submit Your Profile</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
-                    <button className="w-full px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300">
+                    <button className="w-full px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold rounded-lg border border-gray-300 hover:border-gray-400 transition-all duration-300">
                       Browse Open Positions
                     </button>
                   </div>
 
                   {/* Footer Text */}
-                  <p className="text-xs text-slate-400 text-center mt-4">
+                  <p className="text-xs text-gray-600 text-center mt-4">
                     We'll review your profile and reach out if there's a great fit
                   </p>
                 </div>
@@ -1098,18 +1088,18 @@ export default function CareerPage() {
             </div>
 
             {/* Bottom Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-16 pt-12 border-t border-white/10">
+            <div className="grid grid-cols-3 gap-4 mt-16 pt-12 border-t border-gray-200">
               <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">40+</div>
-                <p className="text-sm text-slate-400">Active Roles</p>
+                <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">40+</div>
+                <p className="text-sm text-gray-600">Active Roles</p>
               </div>
               <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-purple-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">4+</div>
-                <p className="text-sm text-slate-400">Job Types</p>
+                <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">4+</div>
+                <p className="text-sm text-gray-600">Job Types</p>
               </div>
               <div className="text-center group cursor-default">
-                <div className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-pink-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">86+</div>
-                <p className="text-sm text-slate-400">Team Members</p>
+                <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">86+</div>
+                <p className="text-sm text-gray-600">Team Members</p>
               </div>
             </div>
           </div>
