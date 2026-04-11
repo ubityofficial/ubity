@@ -1,15 +1,24 @@
 import nodemailer from 'nodemailer';
-import streamifier from 'streamifier';
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_FROM,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
+// Validate environment variables
+const requiredEnvVars = ['SMTP_HOST', 'SMTP_PORT', 'EMAIL_FROM', 'EMAIL_PASSWORD', 'EMAIL_TO'];
+const missingEnvVars = requiredEnvVars.filter(v => !process.env[v]);
+
+let transporter;
+
+try {
+  transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '587'),
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_FROM,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+} catch (err) {
+  console.error('Failed to create transporter:', err);
+}
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -32,6 +41,22 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Check if environment variables are set
+    if (missingEnvVars.length > 0) {
+      console.error('Missing environment variables:', missingEnvVars);
+      return res.status(500).json({
+        success: false,
+        message: `Missing environment variables: ${missingEnvVars.join(', ')}. Please configure these in Vercel project settings.`,
+      });
+    }
+
+    if (!transporter) {
+      return res.status(500).json({
+        success: false,
+        message: 'Email service is not configured. Please check environment variables.',
+      });
+    }
+
     const { fullName, email, age, qualification, jobTitle, resumeBase64, resumeFileName } = req.body;
 
     // Validate required fields
@@ -175,9 +200,15 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Error processing application:', error);
-    return res.status(500).json({
+    
+    // Return proper JSON error response
+    const errorMessage = error.message || 'Failed to process application';
+    const statusCode = error.code === 'EAUTH' ? 401 : 500;
+    
+    return res.status(statusCode).json({
       success: false,
-      message: error.message || 'Failed to process application',
+      message: errorMessage,
+      error: process.env.NODE_ENV === 'development' ? error.toString() : undefined,
     });
   }
 }

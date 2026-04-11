@@ -340,10 +340,19 @@ export default function CareerPage() {
         }),
       });
 
-      const result = await response.json();
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type');
+      let result;
+      
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(`Server error (${response.status}): ${text.substring(0, 100)}`);
+      }
 
       if (!response.ok) {
-        throw new Error(result.message || 'Failed to submit application');
+        throw new Error(result.message || `Failed to submit application (${response.status})`);
       }
 
       setSuccessMessage(`✓ Application submitted successfully! Check your email for confirmation.`);
@@ -364,7 +373,8 @@ export default function CareerPage() {
       }, 3000);
     } catch (error) {
       console.error('Application error:', error);
-      alert(`Error submitting application: ${error instanceof Error ? error.message : 'Please try again.'}`);
+      const errorMessage = error instanceof Error ? error.message : 'Please try again later.';
+      alert(`Error submitting application: ${errorMessage}`);
     } finally {
       setSubmitting(false);
     }
