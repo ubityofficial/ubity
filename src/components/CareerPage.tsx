@@ -645,14 +645,14 @@ export default function CareerPage() {
 
                   {/* Content - clean and professional */}
                   <div className="space-y-2">
-                    <h3 className={`text-base font-bold tracking-tight ${
+                    <h3 className={`text-lg font-bold tracking-tight ${
                       isActive ? 'text-white' : 'text-gray-900'
                     }`}>
                       {tab.label}
                     </h3>
                     
                     {/* Openings count */}
-                    <div className={`text-sm font-semibold ${
+                    <div className={`text-base font-semibold ${
                       isActive ? 'text-gray-200' : 'text-gray-700'
                     }`}>
                       {tab.count} {tab.count === 1 ? 'opening' : 'openings'}
@@ -660,7 +660,7 @@ export default function CareerPage() {
                   </div>
 
                   {/* CTA - minimal */}
-                  <div className={`text-xs font-semibold transition-all duration-200 flex items-center gap-1 ${
+                  <div className={`text-sm font-semibold transition-all duration-200 flex items-center gap-1 ${
                     isActive 
                       ? 'text-blue-400' 
                       : tab.id === 'intern'
