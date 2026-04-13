@@ -906,9 +906,9 @@ export default function CareerPage() {
                                   e.stopPropagation();
                                   handleApplyClick(job);
                                 }}
-                                className="w-full px-3 py-2 bg-gray-900 hover:bg-gray-800 text-white font-bold text-xs rounded-lg transition-all duration-200 flex items-center justify-center gap-1.5"
+                                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-900 hover:bg-gray-800 text-white font-bold text-xs sm:text-sm rounded-lg transition-all duration-200 flex items-center justify-center gap-1.5"
                               >
-                                <Rocket className="w-3 h-3" />
+                                <Rocket className="w-3 sm:w-4 h-3 sm:h-4" />
                                 Apply Now
                               </button>
                             </div>
