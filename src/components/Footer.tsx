@@ -242,7 +242,7 @@ export default function Footer({ badgeText = 'Available For Projects', hideProje
         {/* Main Footer Content */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 md:gap-12 mb-8 sm:mb-16">
           <div className="col-span-2 md:col-span-2">
-            <img src="/ubity-logo.png" alt="UBITY" className="h-12 sm:h-16 md:h-20 w-auto mb-2 sm:mb-3" />
+            <h3 className={`text-2xl sm:text-5xl font-plusJakarta font-bold mb-2 sm:mb-3 tracking-wider ${headingClass}`} style={{ letterSpacing: '0.05em' }}>UBITY</h3>
             <p className={`text-xs sm:text-sm font-bold mb-1 sm:mb-2 text-white`}>Powered by IMG Groups</p>
             <p className={`text-xs sm:text-sm font-medium mb-4 sm:mb-6 ${textClass}`}>IMG - I Am God</p>
             <div className="flex items-start gap-3">
