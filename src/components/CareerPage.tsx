@@ -420,7 +420,7 @@ export default function CareerPage() {
       {viewingApplicationPage && selectedJobForApplication && (
         <div className="min-h-screen bg-white">
           {/* Top Navigation Bar */}
-          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-gradient-to-r from-blue-50 via-blue-100/50 to-blue-50 border-b border-blue-200 shadow-md rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-gradient-to-r from-blue-50/60 via-blue-100/30 to-blue-50/60 border-b border-blue-100/50 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between">
               <div className="flex flex-col items-start">
                 <a className="text-xl sm:text-3xl md:text-4xl font-plusJakarta font-bold tracking-wider text-black transition-colors duration-300 flex-shrink-0">
@@ -632,7 +632,7 @@ export default function CareerPage() {
       {!viewingApplicationPage && (
         <>
           {/* Navigation Bar */}
-          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-gradient-to-r from-blue-50 via-blue-100/50 to-blue-50 border-b border-blue-200 shadow-md rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
+          <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-gradient-to-r from-blue-50/60 via-blue-100/30 to-blue-50/60 border-b border-blue-100/50 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
         <div className="max-w-7xl mx-auto px-6 py-3 sm:py-3.5 flex items-center justify-between">
           <div className="flex flex-col items-start">
             <a className="text-xl sm:text-3xl md:text-4xl font-plusJakarta font-bold tracking-wider text-black transition-colors duration-300 flex-shrink-0">
