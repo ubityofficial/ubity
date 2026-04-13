@@ -251,6 +251,7 @@ export default function CareerPage() {
   const [selectedJobForApplication, setSelectedJobForApplication] = useState<JobListing | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState<ApplicationForm>({
     fullName: '',
     email: '',
@@ -365,9 +366,9 @@ export default function CareerPage() {
         throw new Error(result.message || `Failed to submit application (${response.status})`);
       }
 
-      setSuccessMessage(`✓ Application submitted successfully! Check your email for confirmation.`);
+      setShowSuccessModal(true);
       
-      // Reset form after 3 seconds
+      // Reset form and close modal after 4 seconds
       setTimeout(() => {
         setFormData({
           fullName: '',
@@ -379,8 +380,8 @@ export default function CareerPage() {
           remoteWork: true,
         });
         setViewingApplicationPage(false);
-        setSuccessMessage('');
-      }, 3000);
+        setShowSuccessModal(false);
+      }, 4000);
     } catch (error) {
       console.error('Application error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Please try again later.';
@@ -500,11 +501,6 @@ export default function CareerPage() {
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Apply for this position</h2>
                   
                   <form onSubmit={handleSubmitApplication} className="space-y-4 sm:space-y-6">
-                    {successMessage && (
-                      <div className="p-3 sm:p-4 bg-green-50 border border-green-200 rounded-xl text-sm sm:text-base text-green-700 font-semibold">
-                        {successMessage}
-                      </div>
-                    )}
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {/* Full Name */}
@@ -1205,6 +1201,51 @@ export default function CareerPage() {
         </div>
       </div>
 
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 z-50">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 max-w-sm w-full animate-in fade-in zoom-in duration-300">
+            {/* Background Decoration */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-blue-50/50 rounded-2xl sm:rounded-3xl pointer-events-none" />
+            
+            {/* Content */}
+            <div className="relative p-6 sm:p-8 text-center space-y-4 sm:space-y-6">
+              {/* Success Icon */}
+              <div className="mx-auto">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-4 sm:mb-6 shadow-lg animation-pulse">
+                  <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                </div>
+              </div>
+
+              {/* Title */}
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                  Applied Successfully!
+                </h2>
+              </div>
+
+              {/* Description */}
+              <div className="space-y-2">
+                <p className="text-sm sm:text-base text-gray-600">
+                  Your application has been submitted.
+                </p>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Check your email for confirmation and next steps.
+                </p>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="pt-2 sm:pt-4">
+                <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse" />
+                </div>
+                <p className="text-xs text-gray-500 mt-2">Closing in a moment...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer badgeText="We are hiring" hideProjectDescription={true} hideCallSectionDescription={true} hideCallButton={true} hideEnquireSection={true} hideDirectLineSection={true} />
 
       <style>{`
@@ -1214,8 +1255,53 @@ export default function CareerPage() {
           66% { transform: translate(-20px, 20px) scale(0.9); }
         }
         
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes zoomIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.7;
+          }
+        }
+
         .animate-blob {
           animation: blob 7s infinite;
+        }
+
+        .animate-in {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        .fade-in {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        .zoom-in {
+          animation: zoomIn 0.3s ease-out;
+        }
+
+        .animation-pulse {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
       `}</style>
     </div>
