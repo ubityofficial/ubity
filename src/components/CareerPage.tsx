@@ -122,29 +122,6 @@ const jobs: JobListing[] = [
     type: 'Part-Time'
   },
   {
-    id: 'parttime-sales',
-    title: 'Sales Executive',
-    category: 'parttime',
-    role: 'Part-Time - Sales',
-    description: 'Build relationships with clients and drive revenue growth through effective sales strategies.',
-    requirements: [
-      '1+ years of sales experience',
-      'Strong phone and email communication skills',
-      'Ability to meet targets',
-      'Available 20-25 hours per week',
-      'Diploma or above'
-    ],
-    perks: [
-      'Commission-based earnings',
-      'Flexible hours',
-      'Sales training',
-      'Growth opportunities',
-      'Team support'
-    ],
-    location: 'Remote',
-    type: 'Part-Time'
-  },
-  {
     id: 'parttime-client-handling',
     title: 'Client Success Manager',
     category: 'parttime',
@@ -415,7 +392,7 @@ export default function CareerPage() {
 
   const categoryTabs = [
     { id: 'intern', label: 'Interns Roles', icon: Award, count: 2, bgGradient: 'from-blue-50 via-cyan-50 to-blue-50', borderColor: 'border-blue-200', activeGradient: 'from-blue-600 via-blue-500 to-cyan-600', shadowColor: 'shadow-blue-200' },
-    { id: 'parttime', label: 'Part-Time Roles', icon: Clock, count: 4, bgGradient: 'from-purple-50 via-pink-50 to-purple-50', borderColor: 'border-purple-200', activeGradient: 'from-purple-600 via-purple-500 to-pink-600', shadowColor: 'shadow-purple-200' },
+    { id: 'parttime', label: 'Part-Time Roles', icon: Clock, count: 3, bgGradient: 'from-purple-50 via-pink-50 to-purple-50', borderColor: 'border-purple-200', activeGradient: 'from-purple-600 via-purple-500 to-pink-600', shadowColor: 'shadow-purple-200' },
     { id: 'fulltime', label: 'Full-Time Careers', icon: Briefcase, count: 3, bgGradient: 'from-orange-50 via-amber-50 to-orange-50', borderColor: 'border-orange-200', activeGradient: 'from-orange-600 via-orange-500 to-amber-600', shadowColor: 'shadow-orange-200' }
   ];
 
