@@ -58,8 +58,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center flex-shrink-0">
-            <img src="/ubity-logo.png" alt="UBITY" className="h-8 sm:h-10 md:h-12 w-auto transition-transform duration-300 hover:scale-105" />
+          <a href="#" className={`text-lg sm:text-2xl md:text-3xl font-plusJakarta font-bold tracking-wider ${textLight} transition-colors duration-300 flex-shrink-0`}>
+            UBITY
           </a>
 
           {/* Center Navigation - Desktop Only */}
