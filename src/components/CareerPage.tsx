@@ -448,7 +448,7 @@ export default function CareerPage() {
                 <a className="text-xl sm:text-3xl md:text-4xl font-plusJakarta font-bold tracking-wider text-black transition-colors duration-300 flex-shrink-0">
                   UBITY
                 </a>
-                <p className="text-xs sm:text-sm md:text-base text-blue-600 font-medium">Powered by IMG</p>
+                <p className="text-xs sm:text-sm md:text-base text-blue-600 font-medium">Powered by <span className="text-black font-bold">IMG</span></p>
               </div>
               <button
                 onClick={() => setViewingApplicationPage(false)}
@@ -665,7 +665,7 @@ export default function CareerPage() {
             <a className="text-xl sm:text-3xl md:text-4xl font-plusJakarta font-bold tracking-wider text-black transition-colors duration-300 flex-shrink-0">
               UBITY
             </a>
-            <p className="text-xs sm:text-sm md:text-base text-blue-600 font-medium">Powered by IMG</p>
+            <p className="text-xs sm:text-sm md:text-base text-blue-600 font-medium">Powered by <span className="text-black font-bold">IMG</span></p>
           </div>
           <a
             href="/internships"
