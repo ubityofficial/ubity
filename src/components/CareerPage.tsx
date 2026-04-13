@@ -445,7 +445,7 @@ export default function CareerPage() {
           <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-white/5 border-b border-white/10 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                <a className="text-lg sm:text-2xl md:text-3xl font-plusJakarta font-bold tracking-wider text-gray-900 dark:text-white transition-colors duration-300 flex-shrink-0">
+                <a className="text-lg sm:text-2xl md:text-3xl font-plusJakarta font-bold tracking-wider text-black transition-colors duration-300 flex-shrink-0">
                   UBITY
                 </a>
               </div>
@@ -661,7 +661,7 @@ export default function CareerPage() {
           <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-white/5 border-b border-white/10 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
         <div className="max-w-7xl mx-auto px-6 py-3 sm:py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <a className="text-lg sm:text-2xl md:text-3xl font-plusJakarta font-bold tracking-wider text-gray-900 dark:text-white transition-colors duration-300 flex-shrink-0">
+            <a className="text-lg sm:text-2xl md:text-3xl font-plusJakarta font-bold tracking-wider text-black transition-colors duration-300 flex-shrink-0">
               UBITY
             </a>
           </div>
