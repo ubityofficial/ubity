@@ -252,6 +252,9 @@ export default function CareerPage() {
   const [submitting, setSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [ctaResumeFile, setCtaResumeFile] = useState<File | null>(null);
+  const [ctaSubmitting, setCtaSubmitting] = useState(false);
+  const [ctaShowSuccessModal, setCtaShowSuccessModal] = useState(false);
   const [formData, setFormData] = useState<ApplicationForm>({
     fullName: '',
     email: '',
@@ -388,6 +391,71 @@ export default function CareerPage() {
       alert(`Error submitting application: ${errorMessage}`);
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  // CTA Profile Upload Handlers
+  const handleCtaFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setCtaResumeFile(e.target.files[0]);
+    }
+  };
+
+  const handleCtaSubmit = async () => {
+    if (!ctaResumeFile) {
+      alert('Please upload your resume first');
+      return;
+    }
+
+    setCtaSubmitting(true);
+
+    try {
+      // Read resume file and convert to base64
+      const reader = new FileReader();
+      const resumeBase64 = await new Promise<string>((resolve, reject) => {
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(ctaResumeFile);
+      });
+
+      const response = await fetch('/api/submitProfile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          resumeBase64: resumeBase64,
+          resumeFileName: ctaResumeFile.name,
+        }),
+      });
+
+      const contentType = response.headers.get('content-type');
+      let result;
+
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(`Server error (${response.status}): ${text.substring(0, 100)}`);
+      }
+
+      if (!response.ok) {
+        throw new Error(result.message || `Failed to submit profile (${response.status})`);
+      }
+
+      setCtaShowSuccessModal(true);
+
+      // Reset after 4 seconds
+      setTimeout(() => {
+        setCtaResumeFile(null);
+        setCtaShowSuccessModal(false);
+      }, 4000);
+    } catch (error) {
+      console.error('Profile submission error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Please try again later.';
+      alert(`Error submitting profile: ${errorMessage}`);
+    } finally {
+      setCtaSubmitting(false);
     }
   };
 
@@ -1171,18 +1239,28 @@ export default function CareerPage() {
                           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mx-auto mb-2 sm:mb-3 group-hover/upload:scale-110 transition-transform">
                             <Upload className="w-5 h-5 sm:w-6 sm:h-6 text-blue-300" />
                           </div>
-                          <p className="text-xs sm:text-sm font-semibold text-white mb-1">Drag & drop your resume</p>
-                          <p className="text-xs text-gray-400">or click to select (PDF, DOC)</p>
+                          <p className="text-xs sm:text-sm font-semibold text-white mb-1">
+                            {ctaResumeFile ? ctaResumeFile.name : 'Drag & drop your resume'}
+                          </p>
+                          <p className="text-xs text-gray-400">{ctaResumeFile ? 'Click to change file' : 'or click to select (PDF, DOC)'}</p>
                         </div>
                       </div>
-                      <input type="file" className="hidden" accept=".pdf,.doc,.docx" />
+                      <input 
+                        type="file" 
+                        className="hidden" 
+                        accept=".pdf,.doc,.docx" 
+                        onChange={handleCtaFileChange}
+                      />
                     </label>
                   </div>
 
                   {/* Quick Actions */}
                   <div className="space-y-2 sm:space-y-3">
-                    <button className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-sm sm:text-base rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 flex items-center justify-center gap-1.5 sm:gap-2 group/btn">
-                      <span>Submit Your Profile</span>
+                    <button 
+                      onClick={handleCtaSubmit}
+                      disabled={ctaSubmitting || !ctaResumeFile}
+                      className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-sm sm:text-base rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 flex items-center justify-center gap-1.5 sm:gap-2 group/btn disabled:opacity-50 disabled:cursor-not-allowed">
+                      <span>{ctaSubmitting ? 'Submitting...' : 'Submit Your Profile'}</span>
                       <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                     <button 
@@ -1233,6 +1311,51 @@ export default function CareerPage() {
                 </p>
                 <p className="text-sm sm:text-base text-gray-600">
                   Check your email for confirmation and next steps.
+                </p>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="pt-2 sm:pt-4">
+                <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse" />
+                </div>
+                <p className="text-xs text-gray-500 mt-2">Closing in a moment...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CTA Profile Success Modal */}
+      {ctaShowSuccessModal && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 z-50">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 max-w-sm w-full animate-in fade-in zoom-in duration-300">
+            {/* Background Decoration */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-blue-50/50 rounded-2xl sm:rounded-3xl pointer-events-none" />
+            
+            {/* Content */}
+            <div className="relative p-6 sm:p-8 text-center space-y-4 sm:space-y-6">
+              {/* Success Icon */}
+              <div className="mx-auto">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-4 sm:mb-6 shadow-lg animation-pulse">
+                  <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                </div>
+              </div>
+
+              {/* Title */}
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                  Profile Submitted!
+                </h2>
+              </div>
+
+              {/* Description */}
+              <div className="space-y-2">
+                <p className="text-sm sm:text-base text-gray-600">
+                  Your resume has been received successfully.
+                </p>
+                <p className="text-sm sm:text-base text-gray-600">
+                  We'll review it and get back to you within 24-48 hours.
                 </p>
               </div>
 
