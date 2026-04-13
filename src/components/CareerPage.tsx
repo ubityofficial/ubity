@@ -268,7 +268,7 @@ function useCounter(maxValue: number, duration: number = 2000) {
 }
 
 export default function CareerPage() {
-  const [selectedCategory, setSelectedCategory] = useState<'intern' | 'parttime' | 'fulltime'>('intern');
+  const [selectedCategory, setSelectedCategory] = useState<'intern' | 'parttime' | 'fulltime' | null>(null);
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
   const [viewingApplicationPage, setViewingApplicationPage] = useState(false);
   const [selectedJobForApplication, setSelectedJobForApplication] = useState<JobListing | null>(null);
@@ -289,7 +289,7 @@ export default function CareerPage() {
   const membersCount = useCounter(86, 2000);
   const typesCount = useCounter(4, 2000);
 
-  const categorizedJobs = jobs.filter(job => job.category === selectedCategory);
+  const categorizedJobs = selectedCategory ? jobs.filter(job => job.category === selectedCategory) : [];
 
   const handleApplyClick = (job: JobListing) => {
     setSelectedJobForApplication(job);
