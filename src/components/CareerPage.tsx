@@ -675,42 +675,43 @@ export default function CareerPage() {
       </div>
 
       {/* Hero Section with Gradient Background */}
-      <div className="relative pt-32 sm:pt-40 md:pt-44 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 bg-gradient-to-br from-white via-blue-50/30 to-white overflow-hidden">
-        <div className="absolute inset-0 opacity-40 pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-          <div className="absolute -bottom-32 right-10 w-72 h-72 bg-gradient-to-tl from-purple-200 to-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      <div className="relative pt-32 sm:pt-40 md:pt-44 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 bg-gradient-to-br from-slate-900 via-blue-900/50 to-slate-800 overflow-hidden">
+        <div className="absolute inset-0 opacity-100 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+          <div className="absolute -bottom-32 right-10 w-72 h-72 bg-gradient-to-tl from-purple-500/20 to-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
         </div>
 
         <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12 md:mb-16 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full mb-4 sm:mb-6 md:mb-8 font-semibold text-xs sm:text-sm border border-blue-200/50 shadow-lg shadow-blue-100">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 text-cyan-300 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full mb-4 sm:mb-6 md:mb-8 font-semibold text-xs sm:text-sm border border-blue-400/30 shadow-lg shadow-blue-500/20">
             <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
             We're Growing & We Want You
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
             Build Your Future<br />
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               With UBITY
             </span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed">
             Join a talented team of innovators and builders. We're looking for exceptional people to help us revolutionize the industry.
           </p>
           
           {/* Stats */}
-          <div className="flex flex-row gap-3 sm:gap-8 justify-center bg-gradient-to-r from-gray-50/80 to-blue-50/80 backdrop-blur-sm p-4 sm:p-8 rounded-2xl border border-gray-200/50 shadow-xl">
+          <div className="flex flex-row gap-3 sm:gap-8 justify-center bg-gradient-to-r from-white/10 to-blue-500/10 backdrop-blur-md p-4 sm:p-8 rounded-2xl border border-white/20 shadow-xl">
             <div className="text-center group">
-              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:to-cyan-600 transition-all">{positionsCount}+</div>
-              <div className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 font-medium">Open Positions</div>
+              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-cyan-300 transition-all">{positionsCount}+</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1 sm:mt-2 font-medium">Open Positions</div>
             </div>
-            <div className="h-6 sm:h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
+            <div className="h-6 sm:h-12 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
             <div className="text-center group">
-              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all">{membersCount}+</div>
-              <div className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 font-medium">Happy Team Members</div>
+              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:from-purple-300 group-hover:to-pink-300 transition-all">{membersCount}+</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1 sm:mt-2 font-medium">Happy Team Members</div>
             </div>
-            <div className="h-6 sm:h-12 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
+            <div className="h-6 sm:h-12 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
             <div className="text-center group">
-              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-orange-600 to-amber-600 bg-clip-text text-transparent group-hover:from-orange-500 group-hover:to-orange-400 transition-all">{typesCount}+</div>
-              <div className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 font-medium">Employment Types</div>
+              <div className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-orange-400 to-amber-400 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:to-amber-300 transition-all">{typesCount}+</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1 sm:mt-2 font-medium">Employment Types</div>
             </div>
           </div>
         </div>
