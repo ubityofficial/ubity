@@ -1109,7 +1109,7 @@ export default function CareerPage() {
           </div>
 
           {/* Content Grid */}
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 py-10 sm:py-16 md:py-20 relative z-10">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 py-6 sm:py-10 md:py-12 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
               {/* Left Section - Content */}
               <div className="space-y-6 sm:space-y-8">
