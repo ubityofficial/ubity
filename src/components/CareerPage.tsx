@@ -445,10 +445,9 @@ export default function CareerPage() {
           <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-white/5 border-b border-white/10 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold shadow-lg text-xs sm:text-sm flex-shrink-0">
-                  U
-                </div>
-                <span className="text-base sm:text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent truncate">UBITY</span>
+                <a className="text-lg sm:text-2xl md:text-3xl font-plusJakarta font-bold tracking-wider text-gray-900 dark:text-white transition-colors duration-300 flex-shrink-0">
+                  UBITY
+                </a>
               </div>
               <button
                 onClick={() => setViewingApplicationPage(false)}
@@ -662,7 +661,9 @@ export default function CareerPage() {
           <div className="fixed top-0 left-0 right-0 z-30 backdrop-blur-3xl bg-white/5 border-b border-white/10 shadow-sm rounded-2xl sm:rounded-3xl mt-2 sm:mt-4 mx-2 sm:mx-4">
         <div className="max-w-7xl mx-auto px-6 py-3 sm:py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/ubity-logo.png" alt="UBITY" className="h-6 sm:h-8 w-auto" />
+            <a className="text-lg sm:text-2xl md:text-3xl font-plusJakarta font-bold tracking-wider text-gray-900 dark:text-white transition-colors duration-300 flex-shrink-0">
+              UBITY
+            </a>
           </div>
           <a
             href="/internships"
