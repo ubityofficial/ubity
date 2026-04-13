@@ -1185,7 +1185,9 @@ export default function CareerPage() {
                       <span>Submit Your Profile</span>
                       <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
-                    <button className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm sm:text-base rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300">
+                    <button 
+                      onClick={() => setViewingApplicationPage(false)}
+                      className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm sm:text-base rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300">
                       Browse Open Positions
                     </button>
                   </div>
