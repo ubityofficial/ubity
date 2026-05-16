@@ -401,6 +401,24 @@ export default function CareerPage() {
     }
   };
 
+  const handleCtaDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleCtaDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+        setCtaResumeFile(file);
+      } else {
+        alert('Please drop a PDF or DOC file');
+      }
+    }
+  };
+
   const handleCtaSubmit = async () => {
     if (!ctaResumeFile) {
       alert('Please upload your resume first');
@@ -1233,8 +1251,12 @@ export default function CareerPage() {
 
                   {/* Upload Area */}
                   <div className="mb-4 sm:mb-6">
-                    <label className="group/upload cursor-pointer block">
-                      <div className="relative flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 border-2 border-dashed border-white/30 rounded-lg sm:rounded-xl hover:border-blue-400/50 hover:bg-blue-500/5 transition-all duration-300">
+                    <label htmlFor="cta-resume-upload" className="group/upload cursor-pointer block">
+                      <div 
+                        onDragOver={handleCtaDragOver}
+                        onDrop={handleCtaDrop}
+                        className="relative flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 border-2 border-dashed border-white/30 rounded-lg sm:rounded-xl hover:border-blue-400/50 hover:bg-blue-500/5 transition-all duration-300"
+                      >
                         <div className="text-center">
                           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mx-auto mb-2 sm:mb-3 group-hover/upload:scale-110 transition-transform">
                             <Upload className="w-5 h-5 sm:w-6 sm:h-6 text-blue-300" />
@@ -1245,13 +1267,14 @@ export default function CareerPage() {
                           <p className="text-xs text-gray-400">{ctaResumeFile ? 'Click to change file' : 'or click to select (PDF, DOC)'}</p>
                         </div>
                       </div>
-                      <input 
-                        type="file" 
-                        className="hidden" 
-                        accept=".pdf,.doc,.docx" 
-                        onChange={handleCtaFileChange}
-                      />
                     </label>
+                    <input 
+                      id="cta-resume-upload"
+                      type="file" 
+                      className="hidden" 
+                      accept=".pdf,.doc,.docx" 
+                      onChange={handleCtaFileChange}
+                    />
                   </div>
 
                   {/* Quick Actions */}
