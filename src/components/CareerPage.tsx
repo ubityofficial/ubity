@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ArrowRight, MapPin, Clock, Briefcase, Users, Award, CheckCircle2, Check, Sparkles, Rocket, Target, X, Upload } from 'lucide-react';
 import Footer from './Footer';
 
@@ -245,6 +246,7 @@ function useCounter(maxValue: number, duration: number = 2000) {
 }
 
 export default function CareerPage() {
+  const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<'intern' | 'parttime' | 'fulltime'>('intern');
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
   const [viewingApplicationPage, setViewingApplicationPage] = useState(false);
@@ -264,6 +266,20 @@ export default function CareerPage() {
     availableImmediately: false,
     remoteWork: true,
   });
+
+  // Handle URL parameter for direct job access
+  useEffect(() => {
+    const jobId = searchParams.get('job');
+    if (jobId) {
+      const job = jobs.find(j => j.id === jobId);
+      if (job) {
+        setSelectedJobForApplication(job);
+        setSelectedCategory(job.category);
+        setViewingApplicationPage(true);
+        window.scrollTo(0, 0);
+      }
+    }
+  }, [searchParams]);
 
   // Animated counters
   const positionsCount = useCounter(40, 2000);
