@@ -49,7 +49,7 @@ const jobs: JobListing[] = [
       'Analys the Data and present the results'
     ],
     location: 'Remote',
-    type: 'Internship'
+    type: 'Part Time(4.30pm - 8pm)'
   },
   {
     id: 'intern-tech',
