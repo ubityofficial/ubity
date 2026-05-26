@@ -42,11 +42,11 @@ const jobs: JobListing[] = [
       'Proficiency in English'
     ],
     perks: [
-      'Hands-on experience in business development',
-      'Mentorship from industry experts',
-      'Certificate upon completion',
-      'Flexible working hours',
-      'Opportunity to convert to full-time'
+      'Promote our Program',
+      'Outreach & Interact with Leads',
+      'Handel Calls & Chats',
+      'OnBoard Registrations',
+      'Analys the Data and present the results'
     ],
     location: 'Remote',
     type: 'Internship'
