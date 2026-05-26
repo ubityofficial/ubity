@@ -35,9 +35,9 @@ const jobs: JobListing[] = [
     role: 'Intern - BDA',
     description: 'Join our team as a Business Development Intern and help drive growth through strategic partnerships and client engagement.',
     requirements: [
-      'Currently pursuing graduation',
+      'BCom, BBA, BBM, 12th, or BE , BCA (Any one)',
       'Strong communication skills',
-      'Ability to work in a fast-paced environment',
+      'Ability to takes calls and Explain about our programs',
       'Basic understanding of business development',
       'Proficiency in English'
     ],
